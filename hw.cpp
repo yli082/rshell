@@ -13,10 +13,10 @@ using namespace std;
 
 int main()
 {
-	cout << "$ ";
 	string stringz;
 while(1)
 {
+    cout << "$ ";
 	getline(cin, stringz);
 	if(stringz == "exit")
 	exit(1);
@@ -35,18 +35,18 @@ while(1)
 		argv[num] = new char[1000];
 		strcpy(argv[num], wordd);
 		num++;
-		
+
 		wordd = strtok(NULL, ";");
 	}
 	argv[num] = NULL;
-	
+
 	for(int i = 0; i < num;++i)
 	{
 		int pid = fork();
 		if(pid == -1)
 		{
 			perror("HI I'M SPOON");
-			exit(1);	
+			exit(1);
 		}
 		else if(pid ==0)
 		{
@@ -69,20 +69,58 @@ while(1)
 					{
 						argm[numer] = new char[1000];
 						strcpy(argm[numer], moo);
-						cout << argm[numer] << endl;
 						numer++;
 						moo = strtok(NULL, "|");
 					}
 					argm[numer] = NULL;
-					if(execvp(argm[0], argm) == -1)
-					{
-						perror("oops");
-						exit(1);
+                    for(int i = 0; i < numer;i++ )
+                    {
+                        int pid = fork();
+                        if(pid == -1)
+                        {
+                            perror("yes");
+                            exit(1);
+                        }
+                        else if(pid == 0)
+                        {
 
-					}
-						
+                            char *argtwelve[100000];
+			             	char *moo;
+				            moo =strtok(argm[i], " ");
+				            int numberino = 0;
+			            	while(moo != NULL)
+			            	{
+				       	        argtwelve[numberino] = new char[1000];
+					            strcpy(argtwelve[numberino], moo);
+                                cout << argtwelve[numberino] << endl;
+					            numberino++;
+				        	    moo = strtok(NULL, " ");
+			            	}
+				            if(execvp(argtwelve[0], argtwelve) == -1)
+			            	{
+                                if(i == numer-1)
+                                {
+					                perror("OMG WHY");
+                                }
+                                exit(1);
+
+				            }
+                            cout <<" banana " << endl;
+				            exit(1);
+                        }
+                        else if(pid > 0)
+                        {
+                            int *yesss;
+
+                            if(waitpid(-1, yesss, 0)==-1)
+                            {
+                                exit(1);
+                            }
+                            exit(1);
+                        }
+                    }
+
 				}
-
 
 			}
 		//	if(strchr(argv[i], '&'))
@@ -97,7 +135,7 @@ while(1)
 		//				exit(1);
 		//			}
 		//			char *argtwelve[100000];
-		//			char *moo;	
+		//			char *moo;
 		//			moo =strtok(argv[i], " &");
 		//			int numberino = 0;
 		//			while(moo != NULL)
@@ -126,12 +164,12 @@ while(1)
 	//				perror("ERROR: REQUIRES && TO FUNCTION");
 	//			}
 	//			exit(1);
-	//			
+	//
 	//		}
 			else
 			{
 				char *argtwelve[100000];
-				char *moo;	
+				char *moo;
 				moo =strtok(argv[i], " ");
 				int numberino = 0;
 				while(moo != NULL)
@@ -154,10 +192,9 @@ while(1)
 			perror("ERROR WAITING");
 		}
 
-	
+
 
 	}
-	cout << "$ ";
 }
 	//int yes = execvp(
 
