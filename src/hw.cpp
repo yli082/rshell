@@ -10,21 +10,39 @@
 #include <sys/wait.h>
 using namespace std;
 
+void foroopsies(char *c[10000])
+{
+	for(int i = 0; c[i] != 0;++i)
+	{
+		delete c[i];
+	}
 
+}
 int main()
 {
 	string stringz;
 while(1)
 {
-    cout << "$ ";
+	char *host = new char[256];
+	gethostname(host, 256);
+	cout << getlogin() << '@' << host<< "$ ";
+	delete [] host;
 	getline(cin, stringz);
 	if(stringz == "exit")
 	exit(1);
 	//cout << stringz << endl;
 	char *str= new char[stringz.size()];
 	strcpy(str, stringz.c_str());
-
-
+	char *str2 = new char[stringz.size()];
+	strcpy(str2, stringz.c_str());
+	char *test = strtok(str2, ";&|");
+	if(test == NULL)
+	{
+		perror("ERROR");
+	}
+	else
+{
+	delete [] str2;
 	char *argv[100000];
 	char *wordd;
 	wordd = strtok(str, ";");
@@ -56,7 +74,7 @@ while(1)
 
 				if((pch[1]=='|') && (pch[0]=='|'))
 				{
-					if(pch[3] == '|' )
+					if(pch[2] == '|' )
 					{
 						perror("Error, syntax error near |");
 
@@ -103,6 +121,7 @@ while(1)
                                 {
 					                perror("ERROR");
                                 }
+								foroopsies(argtwelve);
                                 exit(1);
 
 				            }
@@ -121,7 +140,7 @@ while(1)
 
                         }
                     }
-
+					foroopsies(argm);
 				}
 
 			}
@@ -130,7 +149,7 @@ while(1)
 			    char *pch = strchr(argv[i], '&');
 			    if((pch[1]=='&') && (pch[0]='&'))
 				{
-				    if(pch[3] == '&' )
+				    if(pch[2] == '&' )
 				    {
 					    perror("Error, syntax error near &");
 					    exit(1);
@@ -174,6 +193,7 @@ while(1)
 
 					                   perror("ERROR");
 
+									foroopsies(argtwelve);
                                    exit(1);
 
 				            }
@@ -191,7 +211,7 @@ while(1)
 
                         }
                     }
-
+				foroopsies(argm);
 				}
 
 
@@ -215,6 +235,7 @@ while(1)
 				{
 					perror("ERROR");
 				}
+				foroopsies(argtwelve);
 				exit(1);
 			}
 		}
@@ -225,8 +246,10 @@ while(1)
 		}
 
 
-
+}
+foroopsies(argv);
 	}
+delete [] str;
 }
 	//int yes = execvp(
 
