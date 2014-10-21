@@ -54,14 +54,14 @@ while(1)
 	else
 {
 	delete [] str2;
-	char *argv[100000];
+	char *argv[10000];
 	char *wordd;
 	wordd = strtok(str, ";");
 //	argv[0] = new char[stringz.size()];
 	int num =0;
 	while(wordd !=NULL)
 	{
-		argv[num] = new char[1000];
+		argv[num] = new char[10000];
 		strcpy(argv[num], wordd);
 		num++;
 
@@ -91,13 +91,13 @@ while(1)
 
 						exit(1);
 					}
-					char *argm[100000];
+					char *argm[10000];
 					char *moo;
 					moo = strtok(argv[i], "|");
 					int numer = 0;
 					while (moo != NULL)
 					{
-						argm[numer] = new char[1000];
+						argm[numer] = new char[10000];
 						strcpy(argm[numer], moo);
 						numer++;
 						moo = strtok(NULL, "|");
@@ -115,7 +115,7 @@ while(1)
                         else if(pid == 0)
                         {
 
-                            char *argtwelve[100000];
+                            char *argtwelve[10000];
 			             	char *moo;
 				            moo =strtok(argm[i], " ");
 				            int numberino = 0;
@@ -165,13 +165,13 @@ while(1)
 					    perror("Error, syntax error near &");
 					    exit(1);
 				    }
-				    char *argm[100000];
+				    char *argm[10000];
 				    char *moo;
 				    moo = strtok(argv[i], "&");
 				    int numer = 0;
 				    while (moo != NULL)
 			    	{
-				    	argm[numer] = new char[1000];
+				    	argm[numer] = new char[10000];
 					    strcpy(argm[numer], moo);
 					    numer++;
 					    moo = strtok(NULL, "&");
@@ -188,13 +188,13 @@ while(1)
                            }
                            else if(pid == 0)
                            {
-                               char *argtwelve[100000];
+                               char *argtwelve[10000];
 			             	   char *moo;
 				               moo =strtok(argm[i], " ");
 				               int numberino = 0;
 			            	   while(moo != NULL)
 			            	   {
-				       	           argtwelve[numberino] = new char[1000];
+				       	           argtwelve[numberino] = new char[10000];
 					               strcpy(argtwelve[numberino], moo);
 					               numberino++;
 				        	       moo = strtok(NULL, " ");
@@ -231,13 +231,13 @@ while(1)
 			}
 			else
 			{
-				char *argtwelve[100000];
+				char *argtwelve[10000];
 				char *moo;
 				moo =strtok(argv[i], " ");
 				int numberino = 0;
 				while(moo != NULL)
 				{
-					argtwelve[numberino] = new char[1000];
+					argtwelve[numberino] = new char[10000];
 					strcpy(argtwelve[numberino], moo);
 					numberino++;
 					moo = strtok(NULL, " ");
