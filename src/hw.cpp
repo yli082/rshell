@@ -21,8 +21,10 @@ void foroopsies(char *c[10000])
 int main()
 {
 	string stringz;
+
+
 while(1)
-{
+{	
 	char *host = new char[256];
 	gethostname(host, 256);
 	cout << getlogin() << '@' << host<< "$ ";
@@ -36,6 +38,15 @@ while(1)
 	char *str2 = new char[stringz.size()];
 	strcpy(str2, stringz.c_str());
 	char *test = strtok(str2, ";&|");
+	for(unsigned int i = 0; i < stringz.size();++i)
+	{
+		if(str[i] == '#')
+		{
+			str[i] = '\0';
+			break;
+		}
+	
+	}
 	if(test == NULL)
 	{
 		perror("ERROR");
