@@ -12,10 +12,12 @@ using namespace std;
 
 void foroopsies(char *c[10000])
 {
-	for(int i = 0; c[i] != 0;++i)
+	int i= 0;
+	for(; c[i] != 0;++i)
 	{
 		delete c[i];
 	}
+	delete c[i];
 
 }
 int main()
@@ -126,6 +128,7 @@ while(1)
 					            numberino++;
 				        	    moo = strtok(NULL, " ");
 			            	}
+					argtwelve[numberino] = NULL;
 				            if(execvp(argtwelve[0], argtwelve) == -1)
 			            	{
                                 if(i == numer-1)
@@ -199,6 +202,7 @@ while(1)
 					               numberino++;
 				        	       moo = strtok(NULL, " ");
 			            	   }
+						argtwelve[numberino] = NULL;
 				               if(execvp(argtwelve[0], argtwelve) == -1)
 			            	   {
 
@@ -242,6 +246,7 @@ while(1)
 					numberino++;
 					moo = strtok(NULL, " ");
 				}
+				argtwelve[numberino] = NULL;
 				if(execvp(argtwelve[0], argtwelve) == -1)
 				{
 					perror("ERROR");
