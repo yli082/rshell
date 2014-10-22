@@ -55,7 +55,9 @@ When chaining nonexistant or commands, will output one extra error.
 
 If more than 10000 characters entered, will memory leak
 
+Single commands such as |, &, ; will output an error, which will say success
 
+Random memory corruption
 
 
 ```
