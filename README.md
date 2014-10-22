@@ -39,4 +39,17 @@ hw.cpp
 ./tests:
 
 ```
+BUGS
+```
+Exit sometimes doesn't work. Tested this with rshell running multiple rshells.
 
+Used valgrind to check for memory leaks. 1 Possibly lost block.
+
+When chaining nonexistant or commands, will output one extra error.
+
+
+
+
+
+
+```

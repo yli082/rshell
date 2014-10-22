@@ -1,0 +1,214 @@
+Script started on Tue 21 Oct 2014 11:00:56 PM PDT
+~
+yli082@hammer $ cd rshell
+~/rshell
+yli082@hammer $ make
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -Wall -Werror -ansi -pedantic src/hw.cpp -o bin/rshell
+~/rshell
+yli082@hammer $ ls[K[Krshel[K[K[K[K[Kbin/rshell
+yli082@hammer.cs.ucr.edu$ ls
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ pwd
+/home/csmajs/yli082/rshell
+yli082@hammer.cs.ucr.edu$ echo hi
+hi
+yli082@hammer.cs.ucr.edu$ ls;echo hi; ls
+bin  LICENSE  Makefile	README.md  src	tests
+hi
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ asdasdlasdasdal;asdasd;ls;pwd
+ERRROR: No such file or directory
+ERRROR: No such file or directory
+bin  LICENSE  Makefile	README.md  src	tests
+/home/csmajs/yli082/rshell
+yli082@hammer.cs.ucr.edu$ ls -a  ; mkdir .bananas;ls -a; ;a s-  ls-a; rm -rf .bananas;ls -a
+.  ..  bin  .git  LICENSE  Makefile  README.md	src  tests
+.  ..  .bananas  bin  .git  LICENSE  Makefile  README.md  src  tests
+ERRROR: No such file or directory
+.  ..  bin  .git  LICENSE  Makefile  README.md	src  tests
+yli082@hammer.cs.ucr.edu$ ls &&       cd
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls && ls
+bin  LICENSE  Makefile	README.md  src	tests
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ ls && asdasd
+bin  LICENSE  Makefile	README.md  src	tests
+ERROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ asasd && ls
+ERROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls && ls && pwd
+bin  LICENSE  Makefile	README.md  src	tests
+bin  LICENSE  Makefile	README.md  src	tests
+/home/csmajs/yli082/rshell
+yli082@hammer.cs.ucr.edu$ asdasd&&asdasd&7 &asdasd&&asdasd&&asdasd&&asdsad&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asdasd&&asd&s&  &ss&&s&&
+ERROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ asas||asas||asas||ASAS|AS|AS|AS||
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ lls -    s -a && [wd  pwd    pwd && asdasd && echo nothing will show
+.  ..  bin  .git  LICENSE  Makefile  README.md	src  tests
+/home/csmajs/yli082/rshell
+ERROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls || l pwd
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ ls||    asdasdasd||ls
+erRROr: No such file or directory
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ ls|||||||     asdasd
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ ls ||                ls
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ ls ||| yesy    pwd
+Error, syntax error near |: Success
+yli082@hammer.cs.ucr.edu$ ls &&& pwd
+Error, syntax error near &: Success
+yli082@hammer.cs.ucr.edu$ ls ;;; pwd
+bin  LICENSE  Makefile	README.md  src	tests
+/home/csmajs/yli082/rshell
+yli082@hammer.cs.ucr.edu$ &
+DDERROR: Success
+yli082@hammer.cs.ucr.edu$ |
+DDERROR: Success
+yli082@hammer.cs.ucr.edu$ ;
+DDERROR: Success
+yli082@hammer.cs.ucr.edu$ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+DDERROR: Success
+yli082@hammer.cs.ucr.edu$ |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+DDERROR: Success
+yli082@hammer.cs.ucr.edu$ asdasD||asdASD||ASD|ZXCZXC||ASDASD||ASDASD||ASDASD
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+erRROr: No such file or directory
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls && pwd || ls -a
+ls: cannot access &&: No such file or directory
+ls: cannot access pwd: No such file or directory
+.  ..  bin  .git  LICENSE  Makefile  README.md	src  tests
+yli082@hammer.cs.ucr.edu$ pwd ;; ;; ; ; ;; ; ; ; ;;
+/home/csmajs/yli082/rshell
+yli082@hammer.cs.ucr.edu$ pwd &&& & & && & & & &&&7
+Error, syntax error near &: Success
+yli082@hammer.cs.ucr.edu$ ls ||| |  | || |  | || | | | | || |
+Error, syntax error near |: Success
+yli082@hammer.cs.ucr.edu$ ls || #asdasd      helo
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ echo #echo
+
+yli082@hammer.cs.ucr.edu$ ls;f    ls
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ bi  cd bin
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ lsbin     lsbin    bin
+rshell
+yli082@hammer.cs.ucr.edu$ cat Makefile        Readme     EADME.md
+rshell
+======
+
+LIcesnsing information: READ LICENSE
+------
+Project source can be downloaded from https://github.com/yli082/rshell.git
+-----
+Mike Izbicki
+
+Ying Li
+
+All other known bugs and fixes can and should be sent to yl082@ucr.edu
+
+Reported bugs/fixes will be submitted to correction
+
+File List
+======
+```
+.:
+
+Makefile
+
+README.md
+
+LICENSE
+
+./src
+
+./tests
+
+```
+```
+./src:
+
+hw.cpp
+```
+```
+
+./tests:
+
+```
+
+yli082@hammer.cs.ucr.edu$ ls -a -zxcz zxc 
+ls: invalid option -- 'z'
+Try `ls --help' for more information.
+yli082@hammer.cs.ucr.edu$ pwd asdas     -asdasd
+pwd: invalid option -- 'a'
+Try `pwd --help' for more information.
+yli082@hammer.cs.ucr.edu$ echo -edasdasd
+-edasdasd
+yli082@hammer.cs.ucr.edu$ rshell
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ bin/rshell
+yli082@hammer.cs.ucr.edu$ eaaaaaaaaaa
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ echo still in t          rshell in rshell worked
+rshell in rshell worked
+yli082@hammer.cs.ucr.edu$ ls ;   exit
+bin  LICENSE  Makefile	README.md  src	tests
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls && exit
+bin  LICENSE  Makefile	README.md  src	tests
+ERROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ #Done testing
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ l
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ #umm
+yli082@hammer.cs.ucr.edu$ ls
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ cc
+cc: no input files
+yli082@hammer.cs.ucr.edu$ dcd
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ cd
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ exit
+yli082@hammer.cs.ucr.edu$ exit!
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ #broke my exit yay
+yli082@hammer.cs.ucr.edu$ broke
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ eoakrogke         lslsslsllsls
+ERRROR: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls
+bin  LICENSE  Makefile	README.md  src	tests
+yli082@hammer.cs.ucr.edu$ exit
+~/rshell
+yli082@hammer $ ee[Kxot[K[Kit
+exit
+
+Script done on Tue 21 Oct 2014 11:12:13 PM PDT
