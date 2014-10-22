@@ -38,8 +38,12 @@ hw.cpp
 
 ./tests:
 
+exec.scrip
+
 ```
+====
 BUGS
+====
 ```
 Exit sometimes doesn't work. Tested this with rshell running multiple rshells.
 
@@ -47,7 +51,9 @@ Used valgrind to check for memory leaks. 1 Possibly lost block.
 
 When chaining nonexistant or commands, will output one extra error.
 
+& works as if && was entered, and | works as if || was entered
 
+If more than 10000 characters entered, will memory leak
 
 
 
