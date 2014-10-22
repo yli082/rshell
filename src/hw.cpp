@@ -26,7 +26,7 @@ int main()
 
 
 while(1)
-{	
+{
 	char *host = new char[256];
 	gethostname(host, 256);
 	cout << getlogin() << '@' << host<< "$ ";
@@ -47,11 +47,11 @@ while(1)
 			str[i] = '\0';
 			break;
 		}
-	
+
 	}
 	if(test == NULL)
 	{
-		perror("ERROR");
+		perror("DDERROR");
 	}
 	else
 {
@@ -131,10 +131,7 @@ while(1)
 					argtwelve[numberino] = NULL;
 				            if(execvp(argtwelve[0], argtwelve) == -1)
 			            	{
-                                if(i == numer-1)
-                                {
-					                perror("ERROR");
-                                }
+					                perror("erRROr");
 								foroopsies(argtwelve);
                                 exit(1);
 
@@ -249,7 +246,7 @@ while(1)
 				argtwelve[numberino] = NULL;
 				if(execvp(argtwelve[0], argtwelve) == -1)
 				{
-					perror("ERROR");
+					perror("ERRROR");
 				}
 				foroopsies(argtwelve);
 				exit(1);
