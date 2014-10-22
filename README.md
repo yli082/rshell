@@ -1,7 +1,7 @@
 rshell
 ======
 
-LIcesnsing information: READ LICENSE
+Licensing information: READ LICENSE
 ------
 Project source can be downloaded from https://github.com/yli082/rshell.git
 -----
