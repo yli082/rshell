@@ -22,28 +22,54 @@ int main(int argc, char* argv[]){
 	else{
 		fastest = true;
 	}
+	string path;
+	string tmp;
 	struct stat buf;
-	string path = argv[1];
-	string tmp = "./";
-	path = tmp + path;
-	if(stat(path.c_str(), &buf) == -1){
-		perror("stat");
-		exit(0);
+	if(argv[1][0] != '.' && argv[1][0] != '/' ){
+		path = argv[1];
+		string tmp = "./";
+		path = tmp + path;
+		if(stat(path.c_str(), &buf) == -1){
+			perror("stat");
+			exit(0);
+		}
+		if(S_ISDIR(buf.st_mode)){
+			cerr << "Input file is dir" << endl;
+			exit(0);
+		}
 	}
-	if(S_ISDIR(buf.st_mode)){
-		cerr << "Input file is dir" << endl;
-		exit(0);
+	else{
+		if(stat(argv[1], &buf)){
+			perror("stat");
+			exit(0);
+		}
+		if(S_ISDIR(buf.st_mode)){
+			cerr << "Input files if dir" << endl;
+			exit(0);
+		}
 	}
-	path = argv[2];
-	tmp = "./";
-	path = tmp + path;
-	if(stat(path.c_str(), &buf) == -1){
-		perror("stat");
-		exit(0);
+	if(argv[2][0] != '.' && argv[2][0] != '/'){
+		path = argv[2];
+		tmp = "./";
+		path = tmp + path;
+		if(stat(path.c_str(), &buf) == -1){
+			perror("stat");
+			exit(0);
+		}
+		if(S_ISDIR(buf.st_mode)){
+			cerr << "Input file is dir" << endl;
+			exit(0);
+		}
 	}
-	if(S_ISDIR(buf.st_mode)){
-		cerr << "Input file is dir" << endl;
-		exit(0);
+	else{
+		if(stat(argv[2], &buf) == -1){
+			perror("stat");
+			exit(0);
+		}
+		if(S_ISDIR(buf.st_mode)){
+			cerr << "Input file is dir" << endl;
+			exit(0);
+		}
 	}
 	if(ifstream(argv[2])){
 		cerr << "Output file already exists" << endl;
