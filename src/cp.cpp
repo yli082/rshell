@@ -48,6 +48,18 @@ int main(int argc, char* argv[]){
 			exit(0);
 		}
 	}
+	if(ifstream(argv[2])){
+		cerr << "Output file already exists" << endl;
+		return 0;
+	}
+	else{
+		ofstream tmp(argv[2]);
+		if(!tmp.good()){
+			cerr << "Unable to open file" << endl;
+			return 0;
+		}
+		tmp.close();
+	}
 	if(argv[2][0] != '.' && argv[2][0] != '/'){
 		path = argv[2];
 		tmp = "./";
@@ -71,18 +83,7 @@ int main(int argc, char* argv[]){
 			exit(0);
 		}
 	}
-	if(ifstream(argv[2])){
-		cerr << "Output file already exists" << endl;
-		return 0;
-	}
-	else{
-		ofstream tmp(argv[2]);
-		if(!tmp.good()){
-			cerr << "Unable to open file" << endl;
-			return 0;
-		}
-		tmp.close();
-	}
+
 	if(all){
 		Timer t;
 		double eTime;
