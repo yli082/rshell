@@ -30,6 +30,10 @@ int main(int argc, char* argv[]){
 		perror("stat");
 		exit(0);
 	}
+	if(S_ISDIR(buf.st_mode)){
+		cerr << "Input file is dir" << endl;
+		exit(0);
+	}
 	path = argv[2];
 	tmp = "./";
 	path = tmp + path;
@@ -37,7 +41,6 @@ int main(int argc, char* argv[]){
 		perror("stat");
 		exit(0);
 	}
-
 	if(S_ISDIR(buf.st_mode)){
 		cerr << "Input file is dir" << endl;
 		exit(0);
