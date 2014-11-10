@@ -20,6 +20,37 @@ using namespace std;
     cout << ctime(time);
 }
 */
+void output(vector<string> v)
+{
+    unsigned int max = 80;
+    unsigned int cur = 0;
+    vector<vector<string> > columns;
+    vector<string> row;
+    for(unsigned int i = 0; i < v.size();++i)
+    {
+
+        cur+= v.at(i).size();
+        cout << cur << endl;
+        if(cur < max)
+        {
+            row.push_back(v.at(i));
+        }
+        else
+        {
+            cur = 0;
+            columns.push_back(row);
+            row.clear();
+        }
+    }
+    for(unsigned i = 0; i < columns.size();++i)
+    {
+        for(unsigned x= 0 ; x < columns.at(i).size();++x)
+        {
+            cout << columns.at(i).at(x) << ' ';
+        }
+        cout << endl;
+    }
+}
  void ls(const char* dir, int flag)
 {
     string dirName = dir;
@@ -42,7 +73,9 @@ using namespace std;
          string word = direntp->d_name;
          v.push_back(word);
      }
-     sort(v.begin(), v.end());
+     sort(v.begin(), v.end(), locale("en_US.UTF-8"));
+     output(v);
+  /*
      for(unsigned int x = 0; x < v.size();++x)
      {
          if(flag == 1)
@@ -56,7 +89,7 @@ using namespace std;
             cout << v.at(x) << endl;
          }
      }
-
+*/
  closedir(dirp);
  }
 
@@ -72,17 +105,24 @@ using namespace std;
             exit(1);
         }
         dirent *direntp;
-
-        while((direntp = readdir(dirp)))
-        {
-            if(direntp == NULL)
+            vector <string>v;
+            while((direntp = readdir(dirp)))
             {
-                perror("Error on -l");
-                exit(1);
-            }
+                if(direntp == NULL)
+                {
+                    perror("Error on -l");
+                    exit(1);
+                }
+                string ward = direntp->d_name;
+            v.push_back(ward);
+
+        }
+        sort(v.begin(), v.end(), locale("en_US.UTF-8"));
+        for(unsigned int i = 0; i < v.size();++i)
+        {
             struct stat buf;
-            string words = direntp->d_name;
-             string patherino = "/";
+            string words = v.at(i);
+            string patherino = "/";
             string newpatherino = dirName + patherino + words;
             lstat(newpatherino.c_str(), &buf);
             if((words == "." || words == "..") && !flaga)
@@ -140,7 +180,7 @@ using namespace std;
             char date[15];
             strftime(date, 15, "%b %e %R", localtime(&buf.st_mtime));
             cout << date << ' ';
-            cout << direntp->d_name;
+            cout << v.at(i);
             cout << endl;
         }
 
@@ -213,6 +253,9 @@ using namespace std;
          }
 
      }
+     sort(v.begin(), v.end(), locale("en_US.UTF-8"));
+     sort(t.begin(), t.end(), locale("en_US.UTF-8"));
+
      for(unsigned int i = 0; i < v.size();++i)
      {
          if(flagl)
