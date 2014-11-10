@@ -24,6 +24,11 @@ using namespace std;
 {
     string dirName = dir;
      DIR *dirp = opendir(dirName.c_str());
+     if(dirp == NULL)
+     {
+         perror("Error: invalid file name");
+         exit(1);
+     }
      dirent *direntp;
     vector <string>v;
      while ((direntp = readdir(dirp)))
@@ -51,19 +56,37 @@ using namespace std;
 
 
 
-    void ls_l(const char* dir)
+    void ls_l(const char* dir, int flaga)
     {
         string dirName = dir;
-        DIR *dirp = opendir(dirName.c_str());
+        DIR *dirp = opendir(dir);
+        if (dirp == NULL)
+        {
+            perror("Error opening");
+            exit(1);
+        }
         dirent *direntp;
 
         while((direntp = readdir(dirp)))
         {
+            if(direntp == NULL)
+            {
+                perror("Error on -l");
+                exit(1);
+            }
             struct stat buf;
-            lstat(direntp->d_name, &buf);
             string words = direntp->d_name;
-            if(words == "." || words == "..")
+             string patherino = "/";
+            string newpatherino = dirName + patherino + words;
+            lstat(newpatherino.c_str(), &buf);
+            if((words == "." || words == "..") && !flaga)
+            {
                 continue;
+            }
+            if(words[0] == '.' && !flaga)
+            {
+                continue;
+            }
             if(S_ISDIR(buf.st_mode))
             {
                     cout << 'd';
@@ -137,6 +160,12 @@ using namespace std;
 {
      string dirName = dir;
      cout << dir << ": " << endl;
+
+     vector <string>t;
+     if(flagl)
+     {
+         ls_l(dir, flaga);
+     }
      DIR *dirp = opendir(dir);
      if(dirp == NULL)
      {
@@ -144,8 +173,7 @@ using namespace std;
          exit(1);
      }
      dirent *direntp;
-     vector <char*>v;
-     vector <string>t;
+     vector <string>v;
      while ((direntp = readdir(dirp)))
      {
          if(direntp == NULL)
@@ -165,7 +193,11 @@ using namespace std;
             }
          if(words == "." || words  == "..");
          else{
-            v.push_back(word);
+            if(word[0] == '.' && !flaga)
+            {
+                continue;
+            }
+            v.push_back(words);
             if(S_ISDIR(buf.st_mode))
             {
                 string path ="/";
@@ -177,12 +209,18 @@ using namespace std;
      }
      for(unsigned int i = 0; i < v.size();++i)
      {
-         cout << v.at(i) << ' ';
+         if(flagl)
+         {
+         }
+         else
+             cout << v.at(i) << " ";
      }
      cout << endl;
      for(unsigned i = 0; i < t.size();++i)
      {
+
          string tmp = t.at(i);
+
                 ls_R(tmp.c_str(), flaga, flagl);
      }
     closedir(dirp);
@@ -266,7 +304,6 @@ void ls_Rawr()
      }
     if(flag_a && flag_r + flag_l == 0)
     {
-        cout << "a" << endl;
 
          if(files.size() == 0)
          {
@@ -282,12 +319,12 @@ void ls_Rawr()
              }
          }
     }
-    if(flag_r && flag_a + flag_l == 0)
+    if(flag_r)
     {
          if(files.size() == 0)
          {
             string a = ".";
-            ls_R(a.c_str(), 0, 0);
+            ls_R(a.c_str(), flag_a, flag_l);
          }
          else
          {
@@ -303,13 +340,13 @@ void ls_Rawr()
          if(files.size() == 0)
          {
             string foo= ".";
-            ls_l(foo.c_str());
+            ls_l(foo.c_str(), flag_a);
          }
          else
          {
              for(unsigned int i = 0; i < files.size(); ++i)
              {
-                 ls_l(files.at(i));
+                 ls_l(files.at(i), flag_a);
                  cout << endl;
              }
          }
@@ -337,7 +374,19 @@ void ls_Rawr()
     }
     if(flag_a + flag_l == 2 && !flag_r)
     {
-        cout << "a + l" << endl;
+         if(files.size() == 0)
+         {
+            string foo= ".";
+            ls_l(foo.c_str(), flag_a);
+         }
+         else
+         {
+             for(unsigned int i = 0; i < files.size(); ++i)
+             {
+                 ls_l(files.at(i), flag_a);
+                 cout << endl;
+             }
+         }
     }
     return 0;
 }
