@@ -23,12 +23,18 @@ using namespace std;
  void ls(const char* dir, int flag)
 {
     string dirName = dir;
+
      DIR *dirp = opendir(dirName.c_str());
      if(dirp == NULL)
      {
          perror("Error: invalid file name");
-         exit(1);
+         return;
      }
+    if(dirName != ".")
+    {
+        cout << dir << ": " << endl;
+    }
+
      dirent *direntp;
     vector <string>v;
      while ((direntp = readdir(dirp)))
@@ -287,6 +293,18 @@ void ls_Rawr()
             files.push_back(argv[i]);
         }
      }
+     vector<char*> reprint;
+     for(unsigned int i = 0; i < files.size();++i)
+      {
+            struct stat buf;
+            stat(files.at(i), &buf);
+            if(S_ISREG(buf.st_mode) || S_ISDIR(buf.st_mode)
+                || S_ISLNK(buf.st_mode))
+            {
+                reprint.push_back(files.at(i));
+            }
+
+      }
      if(flag_a + flag_r + flag_l == 0)
      {
          if(files.size() == 0)
