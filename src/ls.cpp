@@ -20,7 +20,23 @@ using namespace std;
     cout << ctime(time);
 }
 */
-void output(vector<string> v)
+int blocksize(vector<string> v)
+{
+    int total = 0;
+    struct stat buf;
+    for(unsigned int i = 0; i < v.size();++i)
+    {
+        string yes = v.at(i);
+        stat(yes.c_str(), &buf);
+        total += buf.st_blocks;
+
+        cout << total << yes  << " " << buf.st_blocks<< endl;
+    }
+    total /=2;
+    return total-4;
+
+}
+void output(vector<string> v, const char* dir)
 {
     unsigned int max = 80;
     unsigned int cur = 0;
@@ -28,9 +44,7 @@ void output(vector<string> v)
     vector<string> row;
     for(unsigned int i = 0; i < v.size();++i)
     {
-
         cur+= v.at(i).size();
-        cout << cur << endl;
         if(cur < max)
         {
             row.push_back(v.at(i));
@@ -42,11 +56,57 @@ void output(vector<string> v)
             row.clear();
         }
     }
+    unsigned int jalapenos = columns.size();
+    if(jalapenos == 0)
+    columns.push_back(row);
     for(unsigned i = 0; i < columns.size();++i)
     {
         for(unsigned x= 0 ; x < columns.at(i).size();++x)
         {
-            cout << columns.at(i).at(x) << ' ';
+
+            struct stat buf;
+            string word = columns.at(i).at(x);
+            string path = "/";
+            string newpath = dir + path + word;
+            lstat(newpath.c_str(), &buf);
+            if(word[0] == '.')
+            {
+                if(S_ISLNK(buf.st_mode))
+                {
+                    cout << "\033[1;100;36m" << columns.at(i).at(x) << "\033[0m" << ' ';
+
+                }
+                else if(S_ISDIR(buf.st_mode))
+                {
+                    cout << "\033[1;100;34m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                }
+                else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
+                {
+                    cout << "\033[100;32m" << columns.at(i).at(x) << "\033[0m" << ' ';
+
+                }
+                else cout << columns.at(i).at(x) << ' ';
+            }
+            else
+            {
+                if(S_ISLNK(buf.st_mode))
+                {
+                    cout << "\033[1;36m" << columns.at(i).at(x) << "\033[0m" << ' ';
+
+                }
+                else if(S_ISDIR(buf.st_mode))
+                {
+                    cout << "\033[1;34m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                }
+
+                else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
+                {
+                    cout << "\033[1;32m" << columns.at(i).at(x) << "\033[0m" << ' ';
+
+                }
+                else cout << word << ' ';
+            }
+
         }
         cout << endl;
     }
@@ -54,27 +114,30 @@ void output(vector<string> v)
  void ls(const char* dir, int flag)
 {
     string dirName = dir;
-
      DIR *dirp = opendir(dirName.c_str());
      if(dirp == NULL)
      {
          perror("Error: invalid file name");
          return;
      }
-    if(dirName != ".")
-    {
-        cout << dir << ": " << endl;
-    }
 
      dirent *direntp;
     vector <string>v;
      while ((direntp = readdir(dirp)))
      {
          string word = direntp->d_name;
-         v.push_back(word);
+         if(!flag)
+         {
+            if(word[0] == '.')
+                continue;
+            else
+            v.push_back(word);
+         }
+         else
+             v.push_back(word);
      }
      sort(v.begin(), v.end(), locale("en_US.UTF-8"));
-     output(v);
+     output(v, dirName.c_str());
   /*
      for(unsigned int x = 0; x < v.size();++x)
      {
@@ -97,6 +160,7 @@ void output(vector<string> v)
 
     void ls_l(const char* dir, int flaga)
     {
+        int max = 4;
         string dirName = dir;
         DIR *dirp = opendir(dir);
         if (dirp == NULL)
@@ -114,9 +178,13 @@ void output(vector<string> v)
                     exit(1);
                 }
                 string ward = direntp->d_name;
+                if((ward[0] == '.') && !flaga);
+                    else
             v.push_back(ward);
 
         }
+        int blocksized = blocksize(v);
+        cout << "total: " << blocksized << endl;
         sort(v.begin(), v.end(), locale("en_US.UTF-8"));
         for(unsigned int i = 0; i < v.size();++i)
         {
@@ -167,7 +235,7 @@ void output(vector<string> v)
             if(S_IXOTH & buf.st_mode)
                 cout << "x ";
                 else cout << "- ";
-            cout << buf.st_nlink << ' ';
+            cout <<  buf.st_nlink << ' ';
             struct passwd *pw;
             uid_t uid = buf.st_uid;
             pw = getpwuid(uid);
@@ -176,11 +244,49 @@ void output(vector<string> v)
             gid_t gid = buf.st_gid;
             gp = getgrgid(gid);
             cout << gp->gr_name << ' ';
-            cout << buf.st_size << ' ';
+            if(buf.st_size> 10000)
+                max = 5;
+            cout << setw(max)  << right << buf.st_size << ' ';
             char date[15];
             strftime(date, 15, "%b %e %R", localtime(&buf.st_mtime));
             cout << date << ' ';
-            cout << v.at(i);
+            if(words[0] == '.')
+            {
+                if(S_ISLNK(buf.st_mode))
+                {
+                    cout << "\033[1;100;36m" << words << "\033[0m" << ' ';
+
+                }
+                else if(S_ISDIR(buf.st_mode))
+                {
+                    cout << "\033[1;100;34m" << words << "\033[0m" << ' ';
+                }
+                else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
+                {
+                    cout << "\033[100;32m" << words << "\033[0m" << ' ';
+
+                }
+                else cout << words << ' ';
+            }
+            else
+            {
+                if(S_ISLNK(buf.st_mode))
+                {
+                    cout << "\033[1;36m" << words << "\033[0m" << ' ';
+
+                }
+                else if(S_ISDIR(buf.st_mode))
+                {
+                    cout << "\033[1;34m" << words << "\033[0m" << ' ';
+                }
+
+                else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
+                {
+                    cout << "\033[1;32m" << words << "\033[0m" << ' ';
+
+                }
+                else cout << words << ' ';
+            }
             cout << endl;
         }
 
@@ -256,14 +362,11 @@ void output(vector<string> v)
      sort(v.begin(), v.end(), locale("en_US.UTF-8"));
      sort(t.begin(), t.end(), locale("en_US.UTF-8"));
 
-     for(unsigned int i = 0; i < v.size();++i)
-     {
          if(flagl)
          {
          }
          else
-             cout << v.at(i) << " ";
-     }
+            output(v, dir);
      cout << endl;
      for(unsigned i = 0; i < t.size();++i)
      {
@@ -305,7 +408,7 @@ void ls_Rawr()
      int flag_a = 0;
      int flag_l = 0;
      int flag_r = 0;
-    vector<char*> files;
+    vector<char*> files1;
     for(int i = 1; i < argc ; ++i)
     {
         if(argv[i][0] == '-')
@@ -333,21 +436,25 @@ void ls_Rawr()
         }
         else
         {
-            files.push_back(argv[i]);
+            files1.push_back(argv[i]);
         }
      }
-     vector<char*> reprint;
-     for(unsigned int i = 0; i < files.size();++i)
+     vector<char*> files;
+     vector<char*> goodfiles;
+     for(unsigned int i = 0; i < files1.size();++i)
       {
             struct stat buf;
-            stat(files.at(i), &buf);
-            if(S_ISREG(buf.st_mode) || S_ISDIR(buf.st_mode)
-                || S_ISLNK(buf.st_mode))
+            if(stat(files1.at(i), &buf))
             {
-                reprint.push_back(files.at(i));
+                files.push_back(files1.at(i));
             }
+            else
+                goodfiles.push_back(files1.at(i));
+
 
       }
+      for(unsigned int i = 0; i < goodfiles.size();++i)
+          files.push_back(goodfiles.at(i));
      if(flag_a + flag_r + flag_l == 0)
      {
          if(files.size() == 0)
