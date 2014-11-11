@@ -117,6 +117,17 @@ void output(vector<string> v, const char* dir)
      DIR *dirp = opendir(dirName.c_str());
      if(dirp == NULL)
      {
+         struct stat boof;
+         if(stat(dir, &boof) != 0)
+         {
+             perror("Error: ");
+             return;
+         }
+         else
+         {
+             cout << dir << endl;
+             return;
+         }
          perror("Error: invalid file name");
          return;
      }
