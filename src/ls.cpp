@@ -30,7 +30,6 @@ int blocksize(vector<string> v)
         stat(yes.c_str(), &buf);
         total += buf.st_blocks;
 
-        cout << total << yes  << " " << buf.st_blocks<< endl;
     }
     total /=2;
     return total-4;
@@ -378,7 +377,6 @@ void output(vector<string> v, const char* dir)
          }
          else
             output(v, dir);
-     cout << endl;
      for(unsigned i = 0; i < t.size();++i)
      {
 
@@ -510,7 +508,6 @@ void ls_Rawr()
              for(unsigned int i = 0; i < files.size(); ++i)
              {
                  ls_R(files.at(i), flag_a, flag_l);
-                 cout << endl;
              }
          }
     }
@@ -530,13 +527,9 @@ void ls_Rawr()
              }
          }
     }
-    if(flag_a + flag_r == 2 && !flag_l)
-    {
-        cout << "a + r" << endl;
-    }
+    /*
     if(flag_l + flag_r == 2 && !flag_a)
     {
-        cout << "l + r" << endl;
         if(files.size() == 0)
          {
             string foo= ".";
@@ -551,6 +544,7 @@ void ls_Rawr()
              }
          }
     }
+    */
     if(flag_a + flag_l == 2 && !flag_r)
     {
          if(files.size() == 0)
