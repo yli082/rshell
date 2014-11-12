@@ -1,0 +1,1174 @@
+Script started on Tue 11 Nov 2014 09:48:19 PM PST
+~
+yli082@hammer $ cd rshell
+~/rshell
+yli082@hammer $ make ls
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -Wall -Werror -ansi -pedantic src/ls.cpp -g -o bin/ls
+~/rshell
+yli082@hammer $ bin/ls
+[1;34mbin[0m/ [1;34mevenmoretests[0m/ LICENSE [1;36mlink[0m@ ls.script Makefile [1;34mmoretests[0m/ quit README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls Makefile
+Makefile 
+~/rshell
+yli082@hammer $ bin/ls Makefile moretests
+Makefile 
+
+moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+~/rshell
+yli082@hammer $ bin/ls Makefile moretests[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kmoretests Makefile
+Makefile 
+
+moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+~/rshell
+yli082@hammer $ bin/ls moretests Makefile asdasdasd as
+Makefile 
+
+asdasdasd: 
+Error: : No such file or directory
+as: 
+Error: : No such file or directory
+moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+~/rshell
+yli082@hammer $ bin/ls moretests Makefile asdasdasd as[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-a
+[1;100;34m.[0m/ [1;100;34m..[0m/ [1;34mbin[0m/ [1;34mevenmoretests[0m/ [1;100;34m.git[0m/ [1;100;34m.hiddentests[0m/ LICENSE [1;36mlink[0m@ ls.script Makefile [1;34mmoretests[0m/ quit 
+README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls -a Makefiole[K[Kl[K[Kle
+Makefile 
+~/rshell
+yli082@hammer $ bin/ls -a Makefile asdasd
+Makefile 
+
+asdasd: 
+Error: : No such file or directory
+
+~/rshell
+yli082@hammer $ bin/ls -a Makefile asdasd[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kmoretests
+[1;100;34m.[0m/ [1;100;34m..[0m/ asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+
+~/rshell
+yli082@hammer $ bin/ls -a moretests/moremoretests
+[1;100;34m.[0m/ [1;100;34m..[0m/ asdasd dsad sad 
+
+~/rshell
+yli082@hammer $ bin/ls -a moretests/moremoretests[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kl
+total: 32
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+-rw------- 1 yli082 csmajs 1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs    7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:47 ls.script 
+-rw------- 1 yli082 csmajs  551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs 1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls -l mak[K[K[KMakefile
+-rw------- 1 yli082 csmajs 551 Nov 11 16:28 Makefile
+~/rshell
+yli082@hammer $ bin/ls -l Makefile src
+-rw------- 1 yli082 csmajs 551 Nov 11 16:28 Makefile
+total: 40
+-rw------- 1 yli082 csmajs 4600 Nov 11 16:31 cp.cpp 
+-rw------- 1 yli082 csmajs 6040 Nov 11 16:28 hw.cpp 
+-rw------- 1 yli082 csmajs 18116 Nov 11 21:30 ls.cpp 
+-rw------- 1 yli082 csmajs  2284 Nov 11 16:28 Timer.h 
+~/rshell
+yli082@hammer $ bin/ls -l Makefile src[K[K[K[K[K[K[K[K[K[K[K[Kasdasdas
+Error opening: No such file or directory
+~/rshell
+yli082@hammer $ bin/ls -l asdasdas[K[K[K[K[K[K[K[K[Ka
+total: 56
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 47 yli082 csmajs 12288 Nov 11 21:46 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+drwx------ 8 yli082 csmajs  4096 Nov 11 21:37 [1;100;34m.git[0m/ 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:03 [1;100;34m.hiddentests[0m/ 
+-rw------- 1 yli082 csmajs  1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs     7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:47 ls.script 
+-rw------- 1 yli082 csmajs   551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs  1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 16:28 [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls -la[K[Kal
+total: 56
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 47 yli082 csmajs 12288 Nov 11 21:46 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+drwx------ 8 yli082 csmajs  4096 Nov 11 21:37 [1;100;34m.git[0m/ 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:03 [1;100;34m.hiddentests[0m/ 
+-rw------- 1 yli082 csmajs  1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs     7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:47 ls.script 
+-rw------- 1 yli082 csmajs   551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs  1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 16:28 [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls -al[K R[K-l
+total: 56
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 47 yli082 csmajs 12288 Nov 11 21:46 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+drwx------ 8 yli082 csmajs  4096 Nov 11 21:37 [1;100;34m.git[0m/ 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:03 [1;100;34m.hiddentests[0m/ 
+-rw------- 1 yli082 csmajs  1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs     7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:47 ls.script 
+-rw------- 1 yli082 csmajs   551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs  1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 16:28 [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls -a -l[K[K[K[KA -l
+Error: LS: Command not found
+~/rshell
+yli082@hammer $ bin/ls -A -l[K[K[K[K[K-lavender
+Error: LS: Command not found
+~/rshell
+yli082@hammer $ bin/ls -lavender[K[K[K[K[K[K[K[KR
+.: 
+[1;34mbin[0m/ [1;34mevenmoretests[0m/ LICENSE [1;36mlink[0m@ ls.script Makefile [1;34mmoretests[0m/ quit README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+
+./bin: 
+[1;32mls[0m* [1;32mrshell[0m* 
+
+./evenmoretests: 
+
+
+./moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+
+./moretests/moremoretests: 
+asdasd dsad sad 
+
+./moretests/moremoretests2: 
+asdasd dsad sad 
+
+./src: 
+cp.cpp hw.cpp ls.cpp Timer.h 
+
+./tests: 
+exec.script 
+~/rshell
+yli082@hammer $ bin/ls -Ra
+.: 
+[1;34mbin[0m/ [1;34mevenmoretests[0m/ [1;100;34m.git[0m/ [1;100;34m.hiddentests[0m/ LICENSE [1;36mlink[0m@ ls.script Makefile [1;34mmoretests[0m/ quit 
+README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+
+./bin: 
+[1;32mls[0m* [1;32mrshell[0m* 
+
+./evenmoretests: 
+
+
+./.git: 
+[1;34mbranches[0m/ COMMIT_EDITMSG config description FETCH_HEAD HEAD [1;34mhooks[0m/ index [1;34minfo[0m/ [1;34mlogs[0m/ [1;34mobjects[0m/ 
+ORIG_HEAD packed-refs [1;34mrefs[0m/ 
+
+./.git/branches: 
+
+
+./.git/hooks: 
+[1;32mapplypatch-msg.sample[0m* [1;32mcommit-msg.sample[0m* [1;32mpost-commit.sample[0m* [1;32mpost-receive.sample[0m* 
+[1;32mpost-update.sample[0m* [1;32mpre-applypatch.sample[0m* [1;32mpre-commit.sample[0m* [1;32mprepare-commit-msg.sample[0m* 
+[1;32mpre-rebase.sample[0m* [1;32mupdate.sample[0m* 
+
+./.git/info: 
+exclude 
+
+./.git/logs: 
+HEAD [1;34mrefs[0m/ 
+
+./.git/logs/refs: 
+[1;34mheads[0m/ [1;34mremotes[0m/ 
+
+./.git/logs/refs/heads: 
+aorti017-master master 
+
+./.git/logs/refs/remotes: 
+[1;34morigin[0m/ 
+
+./.git/logs/refs/remotes/origin: 
+master 
+
+./.git/objects: 
+[1;34m0a[0m/ [1;34m11[0m/ [1;34m14[0m/ [1;34m2c[0m/ [1;34m2f[0m/ [1;34m41[0m/ [1;34m4e[0m/ [1;34m52[0m/ [1;34m56[0m/ [1;34m6e[0m/ [1;34m6f[0m/ [1;34m77[0m/ [1;34m93[0m/ [1;34ma0[0m/ [1;34ma1[0m/ [1;34mb1[0m/ [1;34mc9[0m/ [1;34mce[0m/ [1;34mf8[0m/ [1;34minfo[0m/ [1;34mpack[0m/ 
+
+./.git/objects/0a: 
+1dc9a18d79f3a41e846863cf16c740d471320d 
+
+./.git/objects/11: 
+e3ce55d628363720ecc8ad8a33939d32292f47 
+
+./.git/objects/14: 
+0a2b5a25858b89cc3205644df35414d8932bab 
+
+./.git/objects/2c: 
+0f2ab660c6984e517c0bd8c5e3e1d60b485e79 
+
+./.git/objects/2f: 
+41f63612c15d7d5b3fe38a9992ced79d4e0a4e 
+
+./.git/objects/41: 
+eb834d2a1c5f516aa7ef62b18c234ba35b93da 
+
+./.git/objects/4e: 
+ac763c5c99e1e49bf66d538ee2984fe0f413db 
+
+./.git/objects/52: 
+f2ff9f23683399393b1515463008e28066f8b2 
+
+./.git/objects/56: 
+35bfe02284dd6fa457f37abe7be561ad238aa6 
+
+./.git/objects/6e: 
+6d94e37341898754ad66bcdf11892035f8ea6e 
+
+./.git/objects/6f: 
+c73b857c5788809b4a1c3bb1137f2ec616b380 
+
+./.git/objects/77: 
+6082caac56bc06abb140fe901c9ab1fd5c9489 
+
+./.git/objects/93: 
+9d0321c125e17296d8fd738fed6ea22d27df01 
+
+./.git/objects/a0: 
+ee7b9212d5d8359cd58982d1e3a8c201760819 
+
+./.git/objects/a1: 
+2dec98f82a899b66a82f9cf66e87a11796e7c3 
+
+./.git/objects/b1: 
+1295112d79e5f74c211ca4de992d2303b105f3 
+
+./.git/objects/c9: 
+a565836529adeb598726d8e5dfa5ce997de7e4 fdcabfe8efa9b16c6fa8172db8e541c687a2f9 
+
+./.git/objects/ce: 
+39d77b6eef72ab26ba5d66099fa0e3594dcbab 
+
+./.git/objects/f8: 
+6454258fa2fa328a7eea7f54f0a862d3728be1 bf9b685efe8f07a40f44c7bea482e31d3def45 
+
+./.git/objects/info: 
+
+
+./.git/objects/pack: 
+pack-e2a759e6459f46c94885ea6b11d23a15700086fa.idx 
+pack-e2a759e6459f46c94885ea6b11d23a15700086fa.pack 
+
+./.git/refs: 
+[1;34mheads[0m/ [1;34mremotes[0m/ [1;34mtags[0m/ 
+
+./.git/refs/heads: 
+aorti017-master master 
+
+./.git/refs/remotes: 
+[1;34morigin[0m/ 
+
+./.git/refs/remotes/origin: 
+HEAD master 
+
+./.git/refs/tags: 
+
+
+./.hiddentests: 
+as asd asdsa dasd [1;34mmorehidden[0m/ [1;34mmorehidden2[0m/ sad 
+
+./.hiddentests/morehidden: 
+asd asdasd dd [1;36mlinks[0m@ 
+
+./.hiddentests/morehidden2: 
+asd asdasd dd ddsd dsad [1;36mlinkss[0m@ sad 
+
+./moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+
+./moretests/moremoretests: 
+asdasd dsad sad 
+
+./moretests/moremoretests2: 
+asdasd dsad sad 
+
+./src: 
+cp.cpp hw.cpp ls.cpp Timer.h 
+
+./tests: 
+exec.script 
+~/rshell
+yli082@hammer $ bin/ls -Ra[Kl
+.: 
+total: 32
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+-rw------- 1 yli082 csmajs 1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs    7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:47 ls.script 
+-rw------- 1 yli082 csmajs  551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs 1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34mtests[0m/ 
+
+./bin: 
+total: 284
+-rwx------ 1 yli082 csmajs 269906 Nov 11 21:47 [1;32mls[0m* 
+-rwx------ 1 yli082 csmajs 15207 Nov 11 20:07 [1;32mrshell[0m* 
+
+./evenmoretests: 
+total: 0
+
+./moretests: 
+total: 8
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asda 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasdasdasdsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasdasdasdsadasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asgfgdfg 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 ds 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 gfdhfd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 hfdassad 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoremoretests[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoremoretests2[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 sd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 sdas 
+
+./moretests/moremoretests: 
+total: 0
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 dsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 sad 
+
+./moretests/moremoretests2: 
+total: 0
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 dsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 sad 
+
+./src: 
+total: 40
+-rw------- 1 yli082 csmajs 4600 Nov 11 16:31 cp.cpp 
+-rw------- 1 yli082 csmajs 6040 Nov 11 16:28 hw.cpp 
+-rw------- 1 yli082 csmajs 18116 Nov 11 21:30 ls.cpp 
+-rw------- 1 yli082 csmajs  2284 Nov 11 16:28 Timer.h 
+
+./tests: 
+total: 8
+-rw------- 1 yli082 csmajs 7586 Nov 11 16:28 exec.script 
+~/rshell
+yli082@hammer $ bin/ls -Rla
+.: 
+total: 56
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 47 yli082 csmajs 12288 Nov 11 21:46 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+drwx------ 8 yli082 csmajs  4096 Nov 11 21:37 [1;100;34m.git[0m/ 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:03 [1;100;34m.hiddentests[0m/ 
+-rw------- 1 yli082 csmajs  1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs     7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:47 ls.script 
+-rw------- 1 yli082 csmajs   551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs  1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 16:28 [1;34mtests[0m/ 
+
+./bin: 
+total: 292
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rwx------ 1 yli082 csmajs 269906 Nov 11 21:47 [1;32mls[0m* 
+-rwx------ 1 yli082 csmajs 15207 Nov 11 20:07 [1;32mrshell[0m* 
+
+./evenmoretests: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:01 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+
+./.git: 
+total: 52
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34mbranches[0m/ 
+-rw------- 1 yli082 csmajs    5 Nov 11 21:37 COMMIT_EDITMSG 
+-rw------- 1 yli082 csmajs  268 Nov 11 16:31 config 
+-rw------- 1 yli082 csmajs   73 Nov 11 16:28 description 
+-rw------- 1 yli082 csmajs   98 Nov 11 16:29 FETCH_HEAD 
+-rw------- 1 yli082 csmajs   23 Nov 11 16:30 HEAD 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34mhooks[0m/ 
+-rw------- 1 yli082 csmajs  701 Nov 11 21:37 index 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34minfo[0m/ 
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:28 [1;34mlogs[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;34mobjects[0m/ 
+-rw------- 1 yli082 csmajs   41 Nov 11 16:29 ORIG_HEAD 
+-rw------- 1 yli082 csmajs  191 Nov 11 16:28 packed-refs 
+drwx------ 5 yli082 csmajs 4096 Nov 11 16:28 [1;34mrefs[0m/ 
+
+./.git/branches: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+
+./.git/hooks: 
+total: 52
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-rwx------ 1 yli082 csmajs  452 Nov 11 16:28 [1;32mapplypatch-msg.sample[0m* 
+-rwx------ 1 yli082 csmajs  896 Nov 11 16:28 [1;32mcommit-msg.sample[0m* 
+-rwx------ 1 yli082 csmajs  160 Nov 11 16:28 [1;32mpost-commit.sample[0m* 
+-rwx------ 1 yli082 csmajs  548 Nov 11 16:28 [1;32mpost-receive.sample[0m* 
+-rwx------ 1 yli082 csmajs  189 Nov 11 16:28 [1;32mpost-update.sample[0m* 
+-rwx------ 1 yli082 csmajs  398 Nov 11 16:28 [1;32mpre-applypatch.sample[0m* 
+-rwx------ 1 yli082 csmajs 1578 Nov 11 16:28 [1;32mpre-commit.sample[0m* 
+-rwx------ 1 yli082 csmajs 1239 Nov 11 16:28 [1;32mprepare-commit-msg.sample[0m* 
+-rwx------ 1 yli082 csmajs 4951 Nov 11 16:28 [1;32mpre-rebase.sample[0m* 
+-rwx------ 1 yli082 csmajs 3611 Nov 11 16:28 [1;32mupdate.sample[0m* 
+
+./.git/info: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs  240 Nov 11 16:28 exclude 
+
+./.git/logs: 
+total: 16
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs 1257 Nov 11 21:37 HEAD 
+drwx------ 4 yli082 csmajs 4096 Nov 11 16:32 [1;34mrefs[0m/ 
+
+./.git/logs/refs: 
+total: 16
+drwx------ 4 yli082 csmajs 4096 Nov 11 16:32 [1;100;34m.[0m/ 
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;34mheads[0m/ 
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:32 [1;34mremotes[0m/ 
+
+./.git/logs/refs/heads: 
+total: 16
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;100;34m.[0m/ 
+drwx------ 4 yli082 csmajs 4096 Nov 11 16:32 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs  297 Nov 11 16:30 aorti017-master 
+-rw------- 1 yli082 csmajs  768 Nov 11 21:37 master 
+
+./.git/logs/refs/remotes: 
+total: 12
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:32 [1;100;34m.[0m/ 
+drwx------ 4 yli082 csmajs 4096 Nov 11 16:32 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:32 [1;34morigin[0m/ 
+
+./.git/logs/refs/remotes/origin: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:32 [1;100;34m.[0m/ 
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:32 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs  556 Nov 11 21:37 master 
+
+./.git/objects: 
+total: 92
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;34m0a[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34m11[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34m14[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:57 [1;34m2c[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34m2f[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;34m41[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;34m4e[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;34m52[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;34m56[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:30 [1;34m6e[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:30 [1;34m6f[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;34m77[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;34m93[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34ma0[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:57 [1;34ma1[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;34mb1[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34mc9[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:30 [1;34mce[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:57 [1;34mf8[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34minfo[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34mpack[0m/ 
+
+./.git/objects/0a: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs 3119 Nov 11 17:21 1dc9a18d79f3a41e846863cf16c740d471320d 
+
+./.git/objects/11: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  136 Nov 11 21:37 e3ce55d628363720ecc8ad8a33939d32292f47 
+
+./.git/objects/14: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  150 Nov 11 21:37 0a2b5a25858b89cc3205644df35414d8932bab 
+
+./.git/objects/2c: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:57 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  177 Nov 11 16:57 0f2ab660c6984e517c0bd8c5e3e1d60b485e79 
+
+./.git/objects/2f: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs 3497 Nov 11 21:37 41f63612c15d7d5b3fe38a9992ced79d4e0a4e 
+
+./.git/objects/41: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  177 Nov 11 17:21 eb834d2a1c5f516aa7ef62b18c234ba35b93da 
+
+./.git/objects/4e: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  158 Nov 11 17:21 ac763c5c99e1e49bf66d538ee2984fe0f413db 
+
+./.git/objects/52: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  109 Nov 11 16:29 f2ff9f23683399393b1515463008e28066f8b2 
+
+./.git/objects/56: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 17:21 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  136 Nov 11 17:21 35bfe02284dd6fa457f37abe7be561ad238aa6 
+
+./.git/objects/6e: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:30 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  177 Nov 11 16:30 6d94e37341898754ad66bcdf11892035f8ea6e 
+
+./.git/objects/6f: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:30 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  180 Nov 11 16:30 c73b857c5788809b4a1c3bb1137f2ec616b380 
+
+./.git/objects/77: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  164 Nov 11 16:29 6082caac56bc06abb140fe901c9ab1fd5c9489 
+
+./.git/objects/93: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs 1195 Nov 11 16:29 9d0321c125e17296d8fd738fed6ea22d27df01 
+
+./.git/objects/a0: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  631 Nov 11 21:37 ee7b9212d5d8359cd58982d1e3a8c201760819 
+
+./.git/objects/a1: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:57 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  157 Nov 11 16:57 2dec98f82a899b66a82f9cf66e87a11796e7c3 
+
+./.git/objects/b1: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:29 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  177 Nov 11 16:29 1295112d79e5f74c211ca4de992d2303b105f3 
+
+./.git/objects/c9: 
+total: 16
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  177 Nov 11 21:37 a565836529adeb598726d8e5dfa5ce997de7e4 
+-r-------- 1 yli082 csmajs 3092 Nov 11 16:57 fdcabfe8efa9b16c6fa8172db8e541c687a2f9 
+
+./.git/objects/ce: 
+total: 12
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:30 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  136 Nov 11 16:30 39d77b6eef72ab26ba5d66099fa0e3594dcbab 
+
+./.git/objects/f8: 
+total: 16
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:57 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs  137 Nov 11 16:57 6454258fa2fa328a7eea7f54f0a862d3728be1 
+-r-------- 1 yli082 csmajs  200 Nov 11 16:31 bf9b685efe8f07a40f44c7bea482e31d3def45 
+
+./.git/objects/info: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+
+./.git/objects/pack: 
+total: 52
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 23 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+-r-------- 1 yli082 csmajs 5020 Nov 11 16:28 pack-e2a759e6459f46c94885ea6b11d23a15700086fa.idx 
+-r-------- 1 yli082 csmajs 34178 Nov 11 16:28 pack-e2a759e6459f46c94885ea6b11d23a15700086fa.pack 
+
+./.git/refs: 
+total: 20
+drwx------ 5 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 8 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34mheads[0m/ 
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:28 [1;34mremotes[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;34mtags[0m/ 
+
+./.git/refs/heads: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 5 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs   41 Nov 11 16:30 aorti017-master 
+-rw------- 1 yli082 csmajs   41 Nov 11 21:37 master 
+
+./.git/refs/remotes: 
+total: 12
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 5 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;34morigin[0m/ 
+
+./.git/refs/remotes/origin: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:37 [1;100;34m.[0m/ 
+drwx------ 3 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs   32 Nov 11 16:28 HEAD 
+-rw------- 1 yli082 csmajs   41 Nov 11 21:37 master 
+
+./.git/refs/tags: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 5 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m..[0m/ 
+
+./.hiddentests: 
+total: 16
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:03 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 as 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 asd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 asdsa 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 dasd 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:03 [1;34mmorehidden[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:04 [1;34mmorehidden2[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 sad 
+
+./.hiddentests/morehidden: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:03 [1;100;34m.[0m/ 
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:03 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 asd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:03 dd 
+lrwxrwxrwx 1 yli082 csmajs    2 Nov 11 21:03 [1;36mlinks[0m@ 
+
+./.hiddentests/morehidden2: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:04 [1;100;34m.[0m/ 
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:03 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:04 asd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:04 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:04 dd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:04 ddsd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:04 dsad 
+lrwxrwxrwx 1 yli082 csmajs    2 Nov 11 21:04 [1;36mlinkss[0m@ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:04 sad 
+
+./moretests: 
+total: 16
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:02 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asda 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasdasdasdsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasdasdasdsadasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asgfgdfg 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 ds 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 gfdhfd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 hfdassad 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoremoretests[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoremoretests2[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 sd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 sdas 
+
+./moretests/moremoretests: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;100;34m.[0m/ 
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:02 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 dsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 sad 
+
+./moretests/moremoretests2: 
+total: 8
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;100;34m.[0m/ 
+drwx------ 4 yli082 csmajs 4096 Nov 11 21:02 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 dsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 sad 
+
+./src: 
+total: 48
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:30 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs 4600 Nov 11 16:31 cp.cpp 
+-rw------- 1 yli082 csmajs 6040 Nov 11 16:28 hw.cpp 
+-rw------- 1 yli082 csmajs 18116 Nov 11 21:30 ls.cpp 
+-rw------- 1 yli082 csmajs  2284 Nov 11 16:28 Timer.h 
+
+./tests: 
+total: 16
+drwx------ 2 yli082 csmajs 4096 Nov 11 16:28 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rw------- 1 yli082 csmajs 7586 Nov 11 16:28 exec.script 
+~/rshell
+yli082@hammer $ bin/ls -Rla bin
+bin: 
+total: 292
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rwx------ 1 yli082 csmajs 269906 Nov 11 21:47 [1;32mls[0m* 
+-rwx------ 1 yli082 csmajs 15207 Nov 11 20:07 [1;32mrshell[0m* 
+~/rshell
+yli082@hammer $ bin/ls -Rla bin Makefile
+Makefile 
+bin: 
+total: 292
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rwx------ 1 yli082 csmajs 269906 Nov 11 21:47 [1;32mls[0m* 
+-rwx------ 1 yli082 csmajs 15207 Nov 11 20:07 [1;32mrshell[0m* 
+~/rshell
+yli082@hammer $ bin/ls -Rla bin Makefile[1P
+-rw------- 1 yli082 csmajs 551 Nov 11 16:28 Makefile
+total: 292
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m..[0m/ 
+-rwx------ 1 yli082 csmajs 269906 Nov 11 21:47 [1;32mls[0m* 
+-rwx------ 1 yli082 csmajs 15207 Nov 11 20:07 [1;32mrshell[0m* 
+
+~/rshell
+yli082@hammer $ bin/ls -la bin Makefile[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kar[KR
+.: 
+[1;34mbin[0m/ [1;34mevenmoretests[0m/ [1;100;34m.git[0m/ [1;100;34m.hiddentests[0m/ LICENSE [1;36mlink[0m@ ls.script Makefile [1;34mmoretests[0m/ quit 
+README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+
+./bin: 
+[1;32mls[0m* [1;32mrshell[0m* 
+
+./evenmoretests: 
+
+
+./.git: 
+[1;34mbranches[0m/ COMMIT_EDITMSG config description FETCH_HEAD HEAD [1;34mhooks[0m/ index [1;34minfo[0m/ [1;34mlogs[0m/ [1;34mobjects[0m/ 
+ORIG_HEAD packed-refs [1;34mrefs[0m/ 
+
+./.git/branches: 
+
+
+./.git/hooks: 
+[1;32mapplypatch-msg.sample[0m* [1;32mcommit-msg.sample[0m* [1;32mpost-commit.sample[0m* [1;32mpost-receive.sample[0m* 
+[1;32mpost-update.sample[0m* [1;32mpre-applypatch.sample[0m* [1;32mpre-commit.sample[0m* [1;32mprepare-commit-msg.sample[0m* 
+[1;32mpre-rebase.sample[0m* [1;32mupdate.sample[0m* 
+
+./.git/info: 
+exclude 
+
+./.git/logs: 
+HEAD [1;34mrefs[0m/ 
+
+./.git/logs/refs: 
+[1;34mheads[0m/ [1;34mremotes[0m/ 
+
+./.git/logs/refs/heads: 
+aorti017-master master 
+
+./.git/logs/refs/remotes: 
+[1;34morigin[0m/ 
+
+./.git/logs/refs/remotes/origin: 
+master 
+
+./.git/objects: 
+[1;34m0a[0m/ [1;34m11[0m/ [1;34m14[0m/ [1;34m2c[0m/ [1;34m2f[0m/ [1;34m41[0m/ [1;34m4e[0m/ [1;34m52[0m/ [1;34m56[0m/ [1;34m6e[0m/ [1;34m6f[0m/ [1;34m77[0m/ [1;34m93[0m/ [1;34ma0[0m/ [1;34ma1[0m/ [1;34mb1[0m/ [1;34mc9[0m/ [1;34mce[0m/ [1;34mf8[0m/ [1;34minfo[0m/ [1;34mpack[0m/ 
+
+./.git/objects/0a: 
+1dc9a18d79f3a41e846863cf16c740d471320d 
+
+./.git/objects/11: 
+e3ce55d628363720ecc8ad8a33939d32292f47 
+
+./.git/objects/14: 
+0a2b5a25858b89cc3205644df35414d8932bab 
+
+./.git/objects/2c: 
+0f2ab660c6984e517c0bd8c5e3e1d60b485e79 
+
+./.git/objects/2f: 
+41f63612c15d7d5b3fe38a9992ced79d4e0a4e 
+
+./.git/objects/41: 
+eb834d2a1c5f516aa7ef62b18c234ba35b93da 
+
+./.git/objects/4e: 
+ac763c5c99e1e49bf66d538ee2984fe0f413db 
+
+./.git/objects/52: 
+f2ff9f23683399393b1515463008e28066f8b2 
+
+./.git/objects/56: 
+35bfe02284dd6fa457f37abe7be561ad238aa6 
+
+./.git/objects/6e: 
+6d94e37341898754ad66bcdf11892035f8ea6e 
+
+./.git/objects/6f: 
+c73b857c5788809b4a1c3bb1137f2ec616b380 
+
+./.git/objects/77: 
+6082caac56bc06abb140fe901c9ab1fd5c9489 
+
+./.git/objects/93: 
+9d0321c125e17296d8fd738fed6ea22d27df01 
+
+./.git/objects/a0: 
+ee7b9212d5d8359cd58982d1e3a8c201760819 
+
+./.git/objects/a1: 
+2dec98f82a899b66a82f9cf66e87a11796e7c3 
+
+./.git/objects/b1: 
+1295112d79e5f74c211ca4de992d2303b105f3 
+
+./.git/objects/c9: 
+a565836529adeb598726d8e5dfa5ce997de7e4 fdcabfe8efa9b16c6fa8172db8e541c687a2f9 
+
+./.git/objects/ce: 
+39d77b6eef72ab26ba5d66099fa0e3594dcbab 
+
+./.git/objects/f8: 
+6454258fa2fa328a7eea7f54f0a862d3728be1 bf9b685efe8f07a40f44c7bea482e31d3def45 
+
+./.git/objects/info: 
+
+
+./.git/objects/pack: 
+pack-e2a759e6459f46c94885ea6b11d23a15700086fa.idx 
+pack-e2a759e6459f46c94885ea6b11d23a15700086fa.pack 
+
+./.git/refs: 
+[1;34mheads[0m/ [1;34mremotes[0m/ [1;34mtags[0m/ 
+
+./.git/refs/heads: 
+aorti017-master master 
+
+./.git/refs/remotes: 
+[1;34morigin[0m/ 
+
+./.git/refs/remotes/origin: 
+HEAD master 
+
+./.git/refs/tags: 
+
+
+./.hiddentests: 
+as asd asdsa dasd [1;34mmorehidden[0m/ [1;34mmorehidden2[0m/ sad 
+
+./.hiddentests/morehidden: 
+asd asdasd dd [1;36mlinks[0m@ 
+
+./.hiddentests/morehidden2: 
+asd asdasd dd ddsd dsad [1;36mlinkss[0m@ sad 
+
+./moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+
+./moretests/moremoretests: 
+asdasd dsad sad 
+
+./moretests/moremoretests2: 
+asdasd dsad sad 
+
+./src: 
+cp.cpp hw.cpp ls.cpp Timer.h 
+
+./tests: 
+exec.script 
+~/rshell
+yli082@hammer $ bin/ls -aR[Kl
+total: 88
+drwx------ 9 yli082 csmajs 4096 Nov 11 21:47 [1;100;34m.[0m/ 
+drwx------ 47 yli082 csmajs 12288 Nov 11 21:46 [1;100;34m..[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+drwx------ 8 yli082 csmajs  4096 Nov 11 21:37 [1;100;34m.git[0m/ 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:03 [1;100;34m.hiddentests[0m/ 
+-rw------- 1 yli082 csmajs  1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs     7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs 32768 Nov 11 21:50 ls.script 
+-rw------- 1 yli082 csmajs   551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs  1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 16:28 [1;34mtests[0m/ 
+~/rshell
+yli082@hammer $ bin/ls -al[K[KRl
+.: 
+total: 64
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:47 [1;34mbin[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:01 [1;34mevenmoretests[0m/ 
+-rw------- 1 yli082 csmajs 1471 Nov 11 16:28 LICENSE 
+lrwxrwxrwx 1 yli082 csmajs    7 Nov 11 21:01 [1;36mlink[0m@ 
+-rw------- 1 yli082 csmajs 32768 Nov 11 21:50 ls.script 
+-rw------- 1 yli082 csmajs   551 Nov 11 16:28 Makefile 
+drwx------ 4 yli082 csmajs  4096 Nov 11 21:02 [1;34mmoretests[0m/ 
+-rw------- 1 yli082 csmajs     0 Nov 11 21:33 quit 
+-rw------- 1 yli082 csmajs  1084 Nov 11 17:27 README.md 
+drwx------ 2 yli082 csmajs  4096 Nov 11 21:30 [1;34msrc[0m/ 
+drwx------ 2 yli082 csmajs  4096 Nov 11 16:28 [1;34mtests[0m/ 
+
+./bin: 
+total: 284
+-rwx------ 1 yli082 csmajs 269906 Nov 11 21:47 [1;32mls[0m* 
+-rwx------ 1 yli082 csmajs 15207 Nov 11 20:07 [1;32mrshell[0m* 
+
+./evenmoretests: 
+total: 0
+
+./moretests: 
+total: 8
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asda 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasdasdasdsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asdasdasdasdsadasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 asgfgdfg 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 ds 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 gfdhfd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 hfdassad 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoremoretests[0m/ 
+drwx------ 2 yli082 csmajs 4096 Nov 11 21:02 [1;34mmoremoretests2[0m/ 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 sd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:01 sdas 
+
+./moretests/moremoretests: 
+total: 0
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 dsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 sad 
+
+./moretests/moremoretests2: 
+total: 0
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 asdasd 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 dsad 
+-rw------- 1 yli082 csmajs    0 Nov 11 21:02 sad 
+
+./src: 
+total: 40
+-rw------- 1 yli082 csmajs 4600 Nov 11 16:31 cp.cpp 
+-rw------- 1 yli082 csmajs 6040 Nov 11 16:28 hw.cpp 
+-rw------- 1 yli082 csmajs 18116 Nov 11 21:30 ls.cpp 
+-rw------- 1 yli082 csmajs  2284 Nov 11 16:28 Timer.h 
+
+./tests: 
+total: 8
+-rw------- 1 yli082 csmajs 7586 Nov 11 16:28 exec.script 
+~/rshell
+yli082@hammer $ bin/ls -Rl[Ka
+.: 
+[1;34mbin[0m/ [1;34mevenmoretests[0m/ [1;100;34m.git[0m/ [1;100;34m.hiddentests[0m/ LICENSE [1;36mlink[0m@ ls.script Makefile [1;34mmoretests[0m/ quit 
+README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+
+./bin: 
+[1;32mls[0m* [1;32mrshell[0m* 
+
+./evenmoretests: 
+
+
+./.git: 
+[1;34mbranches[0m/ COMMIT_EDITMSG config description FETCH_HEAD HEAD [1;34mhooks[0m/ index [1;34minfo[0m/ [1;34mlogs[0m/ [1;34mobjects[0m/ 
+ORIG_HEAD packed-refs [1;34mrefs[0m/ 
+
+./.git/branches: 
+
+
+./.git/hooks: 
+[1;32mapplypatch-msg.sample[0m* [1;32mcommit-msg.sample[0m* [1;32mpost-commit.sample[0m* [1;32mpost-receive.sample[0m* 
+[1;32mpost-update.sample[0m* [1;32mpre-applypatch.sample[0m* [1;32mpre-commit.sample[0m* [1;32mprepare-commit-msg.sample[0m* 
+[1;32mpre-rebase.sample[0m* [1;32mupdate.sample[0m* 
+
+./.git/info: 
+exclude 
+
+./.git/logs: 
+HEAD [1;34mrefs[0m/ 
+
+./.git/logs/refs: 
+[1;34mheads[0m/ [1;34mremotes[0m/ 
+
+./.git/logs/refs/heads: 
+aorti017-master master 
+
+./.git/logs/refs/remotes: 
+[1;34morigin[0m/ 
+
+./.git/logs/refs/remotes/origin: 
+master 
+
+./.git/objects: 
+[1;34m0a[0m/ [1;34m11[0m/ [1;34m14[0m/ [1;34m2c[0m/ [1;34m2f[0m/ [1;34m41[0m/ [1;34m4e[0m/ [1;34m52[0m/ [1;34m56[0m/ [1;34m6e[0m/ [1;34m6f[0m/ [1;34m77[0m/ [1;34m93[0m/ [1;34ma0[0m/ [1;34ma1[0m/ [1;34mb1[0m/ [1;34mc9[0m/ [1;34mce[0m/ [1;34mf8[0m/ [1;34minfo[0m/ [1;34mpack[0m/ 
+
+./.git/objects/0a: 
+1dc9a18d79f3a41e846863cf16c740d471320d 
+
+./.git/objects/11: 
+e3ce55d628363720ecc8ad8a33939d32292f47 
+
+./.git/objects/14: 
+0a2b5a25858b89cc3205644df35414d8932bab 
+
+./.git/objects/2c: 
+0f2ab660c6984e517c0bd8c5e3e1d60b485e79 
+
+./.git/objects/2f: 
+41f63612c15d7d5b3fe38a9992ced79d4e0a4e 
+
+./.git/objects/41: 
+eb834d2a1c5f516aa7ef62b18c234ba35b93da 
+
+./.git/objects/4e: 
+ac763c5c99e1e49bf66d538ee2984fe0f413db 
+
+./.git/objects/52: 
+f2ff9f23683399393b1515463008e28066f8b2 
+
+./.git/objects/56: 
+35bfe02284dd6fa457f37abe7be561ad238aa6 
+
+./.git/objects/6e: 
+6d94e37341898754ad66bcdf11892035f8ea6e 
+
+./.git/objects/6f: 
+c73b857c5788809b4a1c3bb1137f2ec616b380 
+
+./.git/objects/77: 
+6082caac56bc06abb140fe901c9ab1fd5c9489 
+
+./.git/objects/93: 
+9d0321c125e17296d8fd738fed6ea22d27df01 
+
+./.git/objects/a0: 
+ee7b9212d5d8359cd58982d1e3a8c201760819 
+
+./.git/objects/a1: 
+2dec98f82a899b66a82f9cf66e87a11796e7c3 
+
+./.git/objects/b1: 
+1295112d79e5f74c211ca4de992d2303b105f3 
+
+./.git/objects/c9: 
+a565836529adeb598726d8e5dfa5ce997de7e4 fdcabfe8efa9b16c6fa8172db8e541c687a2f9 
+
+./.git/objects/ce: 
+39d77b6eef72ab26ba5d66099fa0e3594dcbab 
+
+./.git/objects/f8: 
+6454258fa2fa328a7eea7f54f0a862d3728be1 bf9b685efe8f07a40f44c7bea482e31d3def45 
+
+./.git/objects/info: 
+
+
+./.git/objects/pack: 
+pack-e2a759e6459f46c94885ea6b11d23a15700086fa.idx 
+pack-e2a759e6459f46c94885ea6b11d23a15700086fa.pack 
+
+./.git/refs: 
+[1;34mheads[0m/ [1;34mremotes[0m/ [1;34mtags[0m/ 
+
+./.git/refs/heads: 
+aorti017-master master 
+
+./.git/refs/remotes: 
+[1;34morigin[0m/ 
+
+./.git/refs/remotes/origin: 
+HEAD master 
+
+./.git/refs/tags: 
+
+
+./.hiddentests: 
+as asd asdsa dasd [1;34mmorehidden[0m/ [1;34mmorehidden2[0m/ sad 
+
+./.hiddentests/morehidden: 
+asd asdasd dd [1;36mlinks[0m@ 
+
+./.hiddentests/morehidden2: 
+asd asdasd dd ddsd dsad [1;36mlinkss[0m@ sad 
+
+./moretests: 
+asd asda asdasd asdasdasdasdsad asdasdasdasdsadasd asgfgdfg ds gfdhfd hfdassad 
+[1;34mmoremoretests[0m/ [1;34mmoremoretests2[0m/ sd sdas 
+
+./moretests/moremoretests: 
+asdasd dsad sad 
+
+./moretests/moremoretests2: 
+asdasd dsad sad 
+
+./src: 
+cp.cpp hw.cpp ls.cpp Timer.h 
+
+./tests: 
+exec.script 
+~/rshell
+yli082@hammer $ bin/ls -Ra[K[K[K[K[K[K[K[K[K[K#done tests[King
+~/rshell
+yli082@hammer $ exit
+exit
+
+Script done on Tue 11 Nov 2014 09:52:00 PM PST
