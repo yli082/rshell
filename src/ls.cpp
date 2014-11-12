@@ -72,16 +72,16 @@ void output(vector<string> v, const char* dir)
             {
                 if(S_ISLNK(buf.st_mode))
                 {
-                    cout << "\033[1;100;36m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                    cout << "\033[1;100;36m" << columns.at(i).at(x) << "\033[0m" <<  '@' << ' ';
 
                 }
                 else if(S_ISDIR(buf.st_mode))
                 {
-                    cout << "\033[1;100;34m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                    cout << "\033[1;100;34m" << columns.at(i).at(x) << "\033[0m" << '/' <<  ' ';
                 }
                 else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
                 {
-                    cout << "\033[100;32m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                    cout << "\033[100;32m" << columns.at(i).at(x) << "\033[0m" << '*' << ' ';
 
                 }
                 else cout << columns.at(i).at(x) << ' ';
@@ -90,17 +90,17 @@ void output(vector<string> v, const char* dir)
             {
                 if(S_ISLNK(buf.st_mode))
                 {
-                    cout << "\033[1;36m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                    cout << "\033[1;36m" << columns.at(i).at(x) << "\033[0m" <<  '@' << ' ';
 
                 }
                 else if(S_ISDIR(buf.st_mode))
                 {
-                    cout << "\033[1;34m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                    cout << "\033[1;34m" << columns.at(i).at(x) << "\033[0m" << '/' << ' ';
                 }
 
                 else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
                 {
-                    cout << "\033[1;32m" << columns.at(i).at(x) << "\033[0m" << ' ';
+                    cout << "\033[1;32m" << columns.at(i).at(x) << "\033[0m" << '*' << ' ';
 
                 }
                 else cout << word << ' ';
@@ -264,16 +264,16 @@ void output(vector<string> v, const char* dir)
             {
                 if(S_ISLNK(buf.st_mode))
                 {
-                    cout << "\033[1;100;36m" << words << "\033[0m" << ' ';
+                    cout << "\033[1;100;36m" << words << "\033[0m" << '@' <<  ' ';
 
                 }
                 else if(S_ISDIR(buf.st_mode))
                 {
-                    cout << "\033[1;100;34m" << words << "\033[0m" << ' ';
+                    cout << "\033[1;100;34m" << words << "\033[0m" <<  '/'<<  ' ';
                 }
                 else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
                 {
-                    cout << "\033[100;32m" << words << "\033[0m" << ' ';
+                    cout << "\033[100;32m" << words << "\033[0m" <<  '*'<<  ' ';
 
                 }
                 else cout << words << ' ';
@@ -282,17 +282,17 @@ void output(vector<string> v, const char* dir)
             {
                 if(S_ISLNK(buf.st_mode))
                 {
-                    cout << "\033[1;36m" << words << "\033[0m" << ' ';
+                    cout << "\033[1;36m" << words << "\033[0m" << '@' << ' ';
 
                 }
                 else if(S_ISDIR(buf.st_mode))
                 {
-                    cout << "\033[1;34m" << words << "\033[0m" << ' ';
+                    cout << "\033[1;34m" << words << "\033[0m" << '/' << ' ';
                 }
 
                 else if((S_IXUSR & buf.st_mode) || (S_IXGRP & buf.st_mode) || (S_IXOTH & buf.st_mode))
                 {
-                    cout << "\033[1;32m" << words << "\033[0m" << ' ';
+                    cout << "\033[1;32m" << words << "\033[0m" << '*' << ' ';
 
                 }
                 else cout << words << ' ';
