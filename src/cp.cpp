@@ -14,7 +14,7 @@ int main(int argc, char* argv[]){
 	bool fastest = false;
 	if(argc < 3){
 		cout << "cp: missing file operand" << endl;
-        cout << "To copy using all methods use the -a flag" << endl;
+        cout << "To copy using all methods use the -a flag, without flag copies using the fastest method" << endl;
 		return 0;
 	}
 	if(argc ==  4){
