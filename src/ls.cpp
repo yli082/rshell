@@ -15,24 +15,31 @@
 using namespace std;
 
 
-/*void time(int time)
-{
-    cout << ctime(time);
-}
-*/
-int blocksize(vector<string> v)
+int blocksize(vector<string> v, const char* dir)
 {
     int total = 0;
     struct stat buf;
     for(unsigned int i = 0; i < v.size();++i)
     {
+        string slash = "/";
         string yes = v.at(i);
-        stat(yes.c_str(), &buf);
+        string path = dir + slash + yes;
+        if(stat(path.c_str(), &buf)== -1)
+        {
+            perror("error");
+            exit(1);
+        }
         total += buf.st_blocks;
 
     }
     total /=2;
-    return total-4;
+    string dire = dir;
+    if(dire == ".")
+    {
+        total -=4;
+    }
+
+    return total;
 
 }
 void output(vector<string> v, const char* dir)
@@ -46,6 +53,7 @@ void output(vector<string> v, const char* dir)
         cur+= v.at(i).size();
         if(cur < max)
         {
+
             row.push_back(v.at(i));
         }
         else
@@ -53,8 +61,12 @@ void output(vector<string> v, const char* dir)
             cur = 0;
             columns.push_back(row);
             row.clear();
+
+            row.push_back(v.at(i));
         }
     }
+    if(row.size()!= 0)
+        columns.push_back(row);
     unsigned int jalapenos = columns.size();
     if(jalapenos == 0)
     columns.push_back(row);
@@ -67,7 +79,11 @@ void output(vector<string> v, const char* dir)
             string word = columns.at(i).at(x);
             string path = "/";
             string newpath = dir + path + word;
-            lstat(newpath.c_str(), &buf);
+            if(lstat(newpath.c_str(), &buf)==-1)
+            {
+                perror("Error");
+                exit(1);
+            }
             if(word[0] == '.')
             {
                 if(S_ISLNK(buf.st_mode))
@@ -110,9 +126,13 @@ void output(vector<string> v, const char* dir)
         cout << endl;
     }
 }
- void ls(const char* dir, int flag)
+ void ls(const char* dir, int flag, int size)
 {
     string dirName = dir;
+    if(size >1)
+    {
+        cout << dir << ": " << endl;
+    }
      DIR *dirp = opendir(dirName.c_str());
      if(dirp == NULL)
      {
@@ -135,6 +155,11 @@ void output(vector<string> v, const char* dir)
     vector <string>v;
      while ((direntp = readdir(dirp)))
      {
+         if(direntp == NULL)
+         {
+             perror("Error ");
+             exit(1);
+         }
          string word = direntp->d_name;
          if(!flag)
          {
@@ -193,7 +218,7 @@ void output(vector<string> v, const char* dir)
             v.push_back(ward);
 
         }
-        int blocksized = blocksize(v);
+        int blocksized = blocksize(v, dir);
         cout << "total: " << blocksized << endl;
         sort(v.begin(), v.end(), locale("en_US.UTF-8"));
         for(unsigned int i = 0; i < v.size();++i)
@@ -202,7 +227,11 @@ void output(vector<string> v, const char* dir)
             string words = v.at(i);
             string patherino = "/";
             string newpatherino = dirName + patherino + words;
-            lstat(newpatherino.c_str(), &buf);
+            if(lstat(newpatherino.c_str(), &buf))
+            {
+                perror("Error on line 215");
+                exit(1);
+                }
             if((words == "." || words == "..") && !flaga)
             {
                 continue;
@@ -331,6 +360,17 @@ void output(vector<string> v, const char* dir)
      DIR *dirp = opendir(dir);
      if(dirp == NULL)
      {
+         struct stat boof;
+         if(stat(dir, &boof) != 0)
+         {
+             perror("Error: ");
+             return;
+         }
+         else
+         {
+             cout << dir << endl;
+             return;
+         }
          perror("Error opening directory");
          exit(1);
      }
@@ -379,6 +419,7 @@ void output(vector<string> v, const char* dir)
             output(v, dir);
      for(unsigned i = 0; i < t.size();++i)
      {
+      cout << endl;
 
          string tmp = t.at(i);
 
@@ -390,27 +431,79 @@ void output(vector<string> v, const char* dir)
  }
 
 
-void ls_Rawr()
-{
-    string dirName = ".";
-    DIR *dirp = opendir(dirName.c_str());
-    dirent *direntp;
-    while((direntp= readdir(dirp)))
-    {
-        string def = direntp->d_name;
-        if(def == "." || def == "..")
-            continue;
 
-        struct stat buf;
-        stat(direntp->d_name, &buf);
-        if(S_ISDIR(buf.st_mode))
-        ls_R(direntp->d_name, 0, 0);
-        //cout << direntp->d_name << ' ';
+void printfiles(vector<char*> v)
+{
+    if(v.size() == 0)
+        return;
+    for(unsigned i = 0; i < v.size();++i)
+    {
+        cout << v.at(i) << ' ';
     }
-    cout << "return" << endl;
+    cout << endl;
+
 }
 
-
+void printfilesl(vector<char*> v)
+{
+   for(unsigned int i = 0; i < v.size();++i)
+        {
+            struct stat buf;
+            if(lstat(v.at(i), &buf))
+            {
+                perror("Error on line 215");
+                exit(1);
+                }
+            if(S_ISDIR(buf.st_mode))
+            {
+                    cout << 'd';
+            }
+            else if(S_ISLNK(buf.st_mode))
+                cout << 'l';
+            else cout << '-';
+            if(S_IRUSR&buf.st_mode)
+                cout << 'r';
+            else cout << '-';
+            if(S_IWUSR & buf.st_mode)
+                cout << 'w';
+                else cout << '-';
+            if(S_IXUSR & buf.st_mode)
+                cout << 'x';
+                else cout << '-';
+            if(S_IRGRP&buf.st_mode)
+                cout << 'r';
+            else cout << '-';
+            if(S_IWGRP & buf.st_mode)
+                cout << 'w';
+                else cout << '-';
+            if(S_IXGRP & buf.st_mode)
+                cout << 'x';
+                else cout << '-';
+             if(S_IROTH&buf.st_mode)
+                cout << 'r';
+            else cout << '-';
+            if(S_IWOTH & buf.st_mode)
+                cout << 'w';
+                else cout << '-';
+            if(S_IXOTH & buf.st_mode)
+                cout << "x ";
+                else cout << "- ";
+            cout <<  buf.st_nlink << ' ';
+            struct passwd *pw;
+            uid_t uid = buf.st_uid;
+            pw = getpwuid(uid);
+            cout << pw->pw_name << ' ';
+            struct group *gp;
+            gid_t gid = buf.st_gid;
+            gp = getgrgid(gid);
+            cout << gp->gr_name << ' ';
+            cout << buf.st_size << ' ';
+            char date[15];
+            strftime(date, 15, "%b %e %R", localtime(&buf.st_mtime));
+            cout << date << ' ';
+           cout << v.at(i) << endl;
+        }
+}
  int main(int argc, char *argv[])
  {
 
@@ -450,6 +543,7 @@ void ls_Rawr()
      }
      vector<char*> files;
      vector<char*> goodfiles;
+     vector<char*> directories;
      for(unsigned int i = 0; i < files1.size();++i)
       {
             struct stat buf;
@@ -457,25 +551,40 @@ void ls_Rawr()
             {
                 files.push_back(files1.at(i));
             }
-            else
+            else if(S_ISDIR(buf.st_mode))
+                directories.push_back(files1.at(i));
+                else
                 goodfiles.push_back(files1.at(i));
 
 
       }
-      for(unsigned int i = 0; i < goodfiles.size();++i)
-          files.push_back(goodfiles.at(i));
+      for(unsigned int i = 0; i < directories.size();++i)
+          files.push_back(directories.at(i));
      if(flag_a + flag_r + flag_l == 0)
      {
          if(files.size() == 0)
          {
+            if(goodfiles.size() == 0)
+            {
             string foo= ".";
-            ls(foo.c_str(), 0);
+            ls(foo.c_str(), 0, directories.size());
+            }
+            else
+                printfiles(goodfiles);
          }
          else
          {
+             if(goodfiles.size() > 0)
+             {
+                printfiles(goodfiles);
+                cout << endl;
+             }
              for(unsigned int i = 0; i < files.size(); ++i)
              {
-                 ls(files.at(i), 0);
+                 if(goodfiles.size() > 0)
+                 ls(files.at(i),0, 5);
+                 else
+                 ls(files.at(i), 0, directories.size());
              }
          }
      }
@@ -484,27 +593,47 @@ void ls_Rawr()
 
          if(files.size() == 0)
          {
+            if(goodfiles.size() == 0)
+            {
             string foo= ".";
-            ls(foo.c_str(), flag_a);
+            ls(foo.c_str(), flag_a, directories.size());
+            }
+            else
+                printfiles(goodfiles);
          }
          else
          {
+             if(goodfiles.size()>0)
+             {
+                printfiles(goodfiles);
+                cout << endl;
+             }
              for(unsigned int i = 0; i < files.size(); ++i)
              {
-                 ls(files.at(i), flag_a);
+                 if(goodfiles.size() > 0)
+                     ls(files.at(i),flag_a,5);
+                     else
+                 ls(files.at(i), flag_a, directories.size());
                  cout << endl;
              }
          }
     }
     if(flag_r)
     {
+
          if(files.size() == 0)
          {
+             if(goodfiles.size() == 0)
+             {
             string a = ".";
             ls_R(a.c_str(), flag_a, flag_l);
+             }
+             else
+                 printfiles(goodfiles);
          }
          else
          {
+             printfiles(goodfiles);
              for(unsigned int i = 0; i < files.size(); ++i)
              {
                  ls_R(files.at(i), flag_a, flag_l);
@@ -515,15 +644,21 @@ void ls_Rawr()
     {
          if(files.size() == 0)
          {
+             if(goodfiles.size()==0)
+             {
             string foo= ".";
             ls_l(foo.c_str(), flag_a);
+             }
+             else
+                 printfilesl(goodfiles);
          }
          else
          {
+             printfilesl(goodfiles);
              for(unsigned int i = 0; i < files.size(); ++i)
              {
                  ls_l(files.at(i), flag_a);
-                 cout << endl;
+                // cout << endl;
              }
          }
     }
@@ -549,11 +684,17 @@ void ls_Rawr()
     {
          if(files.size() == 0)
          {
+             if(goodfiles.size() ==0)
+             {
             string foo= ".";
             ls_l(foo.c_str(), flag_a);
+             }
+             else
+                 printfilesl(goodfiles);
          }
          else
          {
+             printfilesl(goodfiles);
              for(unsigned int i = 0; i < files.size(); ++i)
              {
                  ls_l(files.at(i), flag_a);

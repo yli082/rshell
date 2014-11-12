@@ -1,11 +1,9 @@
 rshell
 ======
 
-Licensing information: READ LICENSE
 ------
 Project source can be downloaded from https://github.com/yli082/rshell.git
 -----
-Mike Izbicki
 
 Ying Li
 
@@ -32,6 +30,12 @@ LICENSE
 ```
 ./src:
 
+ls.cpp
+
+cp.cpp
+
+timer.h
+
 hw.cpp
 ```
 ```
@@ -45,6 +49,9 @@ exec.scrip
 BUGS
 ====
 ```
+
+hw0:
+
 Exit sometimes doesn't work. Tested this with rshell running multiple rshells.
 
 Used valgrind to check for memory leaks. 1 Possibly lost block.
@@ -59,5 +66,13 @@ Single commands such as |, &, ; will output an error, which will say success
 
 Random memory corruption
 
+
+hw1:
+
+Output for ls doesn't output exactly like how normal ls does
+
+-l not formatted nicely when numbers get too big
+
+bin/ls file dir file will print file than print dir than file, rather than print both files before dir
 
 ```
