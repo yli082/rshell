@@ -12,32 +12,34 @@ using namespace std;
 
 void foroopsies(char *c[10000])
 {
-	int i= 0;
+	/*int i= 0;
 	for(; c[i] != 0;++i)
 	{
 		delete c[i];
 	}
 	delete c[i];
-
+*/
 }
 int main()
 {
-	string stringz;
 
 
 while(1)
 {
+
+	string stringz;
 	char *host = new char[256];
 	gethostname(host, 256);
 	cout << getlogin() << '@' << host<< "$ ";
 	delete [] host;
+
 	getline(cin, stringz);
 	if(stringz == "exit")
-	exit(1);
+    return 0;
 	//cout << stringz << endl;
-	char *str= new char[stringz.size()];
+	char *str= new char[stringz.size()+1];
 	strcpy(str, stringz.c_str());
-	char *str2 = new char[stringz.size()];
+	char *str2 = new char[stringz.size()+1];
 	strcpy(str2, stringz.c_str());
 	char *test = strtok(str2, ";&|");
 	for(unsigned int i = 0; i < stringz.size();++i)
@@ -51,56 +53,52 @@ while(1)
 	}
 	if(test == NULL)
 	{
-		perror("DDERROR");
+        delete [] str;
+        delete [] str2;
+		cerr << ("Error");
+        exit(1);
 	}
 	else
-{
-	delete [] str2;
-	char *argv[10000];
+    {
+        delete [] str2;
+	char **argv = new char*[stringz.size()+1];
+    char **curargv = argv;
 	char *wordd;
 	wordd = strtok(str, ";");
-//	argv[0] = new char[stringz.size()];
 	int num =0;
 	while(wordd !=NULL)
 	{
-		argv[num] = new char[10000];
-		strcpy(argv[num], wordd);
+        argv[num] = wordd;
 		num++;
 
 		wordd = strtok(NULL, ";");
 	}
+    argv = curargv;
 	argv[num] = NULL;
-
 	for(int i = 0; i < num;++i)
 	{
-		int pid = fork();
-		if(pid == -1)
-		{
-			perror("HI I'M SPOON");
-			exit(1);
-		}
-		else if(pid ==0)
-		{
 			if(strchr(argv[i], '|'))
 			{
+
 				char *pch = strchr(argv[i], '|');
 
 				if((pch[1]=='|') && (pch[0]=='|'))
 				{
 					if(pch[2] == '|' )
 					{
-						perror("Error, syntax error near |");
+						cerr << ("Error, syntax error near |");
 
 						exit(1);
 					}
-					char *argm[10000];
+                    string forsizea = argv[i];
+					char **argm = new char*[forsizea.size()+1];
+                    char **cats = argm;
 					char *moo;
 					moo = strtok(argv[i], "|");
 					int numer = 0;
 					while (moo != NULL)
 					{
-						argm[numer] = new char[10000];
-						strcpy(argm[numer], moo);
+                        argm[numer] = moo;
 						numer++;
 						moo = strtok(NULL, "|");
 					}
@@ -108,6 +106,24 @@ while(1)
 					argm[numer] = NULL;
                     for(int i = 0; i < numer;i++ )
                     {
+
+                            string argmsize = argm[i];
+                            char **argtwelve = new char*[argmsize.size()+1];
+			             	char *moo;
+				            moo =strtok(argm[i], " ");
+				            int numberino = 0;
+			            	while(moo != NULL)
+			            	{
+                                string exitcomp = moo;
+                                if(exitcomp == "exit")
+                                {
+                                    exit(0);
+                                }
+                                argtwelve[numberino] = moo;
+					            numberino++;
+				        	    moo = strtok(NULL, " ");
+			            	}
+					argtwelve[numberino] = NULL;
                         int pid = fork();
                         if(pid == -1)
                         {
@@ -116,63 +132,55 @@ while(1)
                         }
                         else if(pid == 0)
                         {
-
-                            char *argtwelve[10000];
-			             	char *moo;
-				            moo =strtok(argm[i], " ");
-				            int numberino = 0;
-			            	while(moo != NULL)
-			            	{
-				       	        argtwelve[numberino] = new char[1000];
-					            strcpy(argtwelve[numberino], moo);
-					            numberino++;
-				        	    moo = strtok(NULL, " ");
-			            	}
-					argtwelve[numberino] = NULL;
 				            if(execvp(argtwelve[0], argtwelve) == -1)
 			            	{
 					                perror("erRROr");
-								foroopsies(argtwelve);
                                 exit(1);
 
 				            }
-				            exit(1);
                         }
                         else if(pid > 0)
                         {
 
-                            waitpid(-1, &nu, 0);
+                            if(waitpid(-1, &nu, 0)==-1)
+                            {
+                                perror("Error |");
+                                exit(1);
+                            }
                             if(nu!= 0 )
                             {
                                 continue;
 
                             }
-                            exit(1);
+
 
                         }
+                        break;
                     }
-					foroopsies(argm);
+                    argm = cats;
+                    delete [] argm;
 				}
 
 			}
-			if(strchr(argv[i], '&'))
+			else if(strchr(argv[i], '&'))
 		   	{
 			    char *pch = strchr(argv[i], '&');
 			    if((pch[1]=='&') && (pch[0]='&'))
 				{
 				    if(pch[2] == '&' )
 				    {
-					    perror("Error, syntax error near &");
+					    cerr << ("Error, syntax error near &");
 					    exit(1);
 				    }
-				    char *argm[10000];
+                    string asize = argv[i];
+				    char **argm = new char*[asize.size()+1];
+                    char **cats = argm;
 				    char *moo;
 				    moo = strtok(argv[i], "&");
 				    int numer = 0;
 				    while (moo != NULL)
 			    	{
-				    	argm[numer] = new char[10000];
-					    strcpy(argm[numer], moo);
+                        argm[numer] = moo;
 					    numer++;
 					    moo = strtok(NULL, "&");
 			    	}
@@ -180,7 +188,23 @@ while(1)
 			    	argm[numer] = NULL;
                        for(int i = 0; i < numer;i++ )
                        {
-                           int pid = fork();
+
+                               string america = argm[i];
+                               char **argtwelve=new char*[america.size()+1];
+			             	   char *moo;
+				               moo =strtok(argm[i], " ");
+				               int numberino = 0;
+			            	   while(moo != NULL)
+			            	   {
+                                   string asd = moo;
+                                   if(asd == "exit")
+                                       exit(0);
+                                   argtwelve[numberino] = moo;
+					               numberino++;
+				        	       moo = strtok(NULL, " ");
+			            	   }
+				        		argtwelve[numberino] = NULL;
+                            int pid = fork();
                            if(pid == -1)
                            {
                                perror("yes");
@@ -188,24 +212,11 @@ while(1)
                            }
                            else if(pid == 0)
                            {
-                               char *argtwelve[10000];
-			             	   char *moo;
-				               moo =strtok(argm[i], " ");
-				               int numberino = 0;
-			            	   while(moo != NULL)
-			            	   {
-				       	           argtwelve[numberino] = new char[10000];
-					               strcpy(argtwelve[numberino], moo);
-					               numberino++;
-				        	       moo = strtok(NULL, " ");
-			            	   }
-						argtwelve[numberino] = NULL;
 				               if(execvp(argtwelve[0], argtwelve) == -1)
 			            	   {
 
 					                   perror("ERROR");
 
-									foroopsies(argtwelve);
                                    exit(1);
 
 				            }
@@ -214,7 +225,11 @@ while(1)
                         else if(pid > 0)
                         {
 
-                            waitpid(-1, &nu, 0);
+                            if(waitpid(-1, &nu, 0) == -1)
+                            {
+                                perror("error");
+                                exit(1);
+                            }
                             if(nu!= 0 )
                             {
                                 break;
@@ -223,27 +238,38 @@ while(1)
 
                         }
                     }
-				foroopsies(argm);
-				}
 
+                    argm = cats;
+                    delete [] argm;
+				}
 
 
 
 			}
 			else
 			{
-				char *argtwelve[10000];
+        	int pid = fork();
+		if(pid == -1)
+		{
+			perror("HI I'M SPOON");
+			exit(1);
+		}
+		else if(pid ==0)
+		{
+                string flabs = argv[i];
+				char **argtwelve= new char*[flabs.size()+1];
+                char **cats = argtwelve;
 				char *moo;
 				moo =strtok(argv[i], " ");
 				int numberino = 0;
 				while(moo != NULL)
 				{
-					argtwelve[numberino] = new char[10000];
-					strcpy(argtwelve[numberino], moo);
+                    argtwelve[numberino] = moo;
 					numberino++;
 					moo = strtok(NULL, " ");
 				}
 				argtwelve[numberino] = NULL;
+                argtwelve = cats;
 				if(execvp(argtwelve[0], argtwelve) == -1)
 				{
 					perror("ERRROR");
@@ -251,18 +277,19 @@ while(1)
 				foroopsies(argtwelve);
 				exit(1);
 			}
-		}
+
 		else if(pid >0)
 		{
 			if(-1 == wait(0))
 			perror("ERROR WAITING");
 		}
-
-
 }
-foroopsies(argv);
+
 	}
-delete [] str;
+    argv = curargv;
+        delete  [] argv;
+        delete [] str;
+
 }
 	//int yes = execvp(
 
@@ -271,5 +298,8 @@ delete [] str;
 //	{
 //		delete argv[i];
 //	}
+
+}
+
 	return 0;
 }
