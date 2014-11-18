@@ -130,11 +130,14 @@ while(1)
                 int oput = 0;
                 int outorin = 0;
                 int appendflag = 0;
+                int ecinput = 0;
                 string check = argm[i];
                 if(check.find(">>")!= string::npos)
                 {
                     appendflag = 1;
                 }
+                if(check.find("<<<")!= string::npos)
+                    ecinput = 1;
                 string inputfile = "";
                 string outputfile = "";
                 for(unsigned int x = 0; x < check.size();++x)
@@ -157,9 +160,14 @@ while(1)
                 }
                     if(iput > 1)
                     {
-
+                        if((iput == 3)&& ecinput)
+                        {
+                        }
+                        else
+                        {
                         cerr << "Error: Too many inputs" << endl;
                         exit(1);
+                        }
                     }
                     if(oput > 1)
                     {
@@ -185,7 +193,7 @@ while(1)
                             string argmsize = argm[i];
                             char **argtwelve = new char*[argmsize.size()+1];
 			             	char *moo;
-				            moo =strtok(argm[i], " <>");
+				            moo =strtok(argm[i], " <>\"");
 				            int numberino = 0;
 			            	while(moo != NULL)
 			            	{
@@ -196,7 +204,7 @@ while(1)
                                 }
                                 argtwelve[numberino] = moo;
 					            numberino++;
-				        	    moo = strtok(NULL, " <>");
+				        	    moo = strtok(NULL, " <>\"");
 			            	}
 					argtwelve[numberino] = NULL;
 
@@ -212,7 +220,8 @@ while(1)
              {
                  int fdi = 0;
                  int fdo = 0;
-                 if(iput+oput == 1|| (appendflag && oput+iput == 2))
+                 if(ecinput);
+                 else if(iput+oput == 1|| (appendflag && oput+iput == 2))
 
                  {
                      if(iput == 1)
@@ -422,6 +431,12 @@ while(1)
                         argtwelve[numberino -2] = NULL;
                         argtwelve[numberino -1] = NULL;
                     }
+
+
+
+
+
+
                  if(numer > 1)
                  {
                      if(i != 0)
@@ -437,6 +452,17 @@ while(1)
                      }
                      close(fd[0]);
                      close(fd[1]);
+                 }
+                 if(ecinput)
+                 {
+                for(int z = 1; z < numberino; ++z)
+                             {
+                                 cout << argtwelve[z] << ' ';
+
+                             }
+                             cout << endl;
+
+                     exit(1);
                  }
                  if(execvp(argtwelve[0], argtwelve) == -1)
                  {
