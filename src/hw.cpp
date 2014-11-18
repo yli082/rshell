@@ -119,9 +119,12 @@ while(1)
                     perror("Error with pipe");
                     exit(1);
                 }
-                if(command.find("<") != string::npos || command.find(">")
-            != string::npos|| command.find(">>")!= string::npos)
+                string newcommand = argm[i];
+                cout << newcommand << endl;
+                if(newcommand.find("<") != string::npos || newcommand.find(">")
+            != string::npos|| newcommand.find(">>")!= string::npos)
                 {
+
 
 
                 int iput = 0;
@@ -200,35 +203,24 @@ while(1)
 					argtwelve[numberino] = NULL;
 
 
-             int pid = fork();
-             if(pid == -1)
-             {
-                  perror("yes");
-                  exit(1);
-             }
-             else if(pid == 0)
-             {
-                 int fdi = 0;
+                int fdi = 0;
                  int fdo = 0;
                  if(iput+oput == 1|| (appendflag && oput+iput == 2))
 
                  {
                      if(iput == 1)
                      {
+                         cout << argtwelve[numberino -1] << endl;
                          fdi = open(argtwelve[numberino -1], O_RDONLY);
                          if(fdi == -1)
                          {
                              perror("Error line 194");
                              exit(1);
                          }
+                         cout << " i am running " << fdi <<  endl;
                              close(0);
                              dup(fdi);
-                         if(numer != 1)
-                         {
-                             dup2(fd[1], 1);
-                             close(fd[0]);
-                         }
-
+                            prevfd = dup(1);
                          argtwelve[numberino-1] = NULL;
                      }
                      if(oput == 1 || oput == 2)
@@ -357,6 +349,15 @@ while(1)
                         argtwelve[numberino -1] = NULL;
                  }
 
+
+             int pid = fork();
+             if(pid == -1)
+             {
+                  perror("yes");
+                  exit(1);
+             }
+             else if(pid == 0)
+             {
                  if(execvp(argtwelve[0], argtwelve) == -1)
                  {
                      perror("erRROr");
@@ -402,66 +403,6 @@ while(1)
 				        	    moo = strtok(NULL, " ");
 			            	}
 					argtwelve[numberino] = NULL;
-                    /*int pid = fork();
-                        if(pid == -1)
-                        {
-                            perror("yes");
-                            exit(1);
-                        }
-                        else if(pid == 0)
-                        {
-                            if(-1==dup2(prevfd, 0))
-                            {
-                                perror("Error putting prev fd into 0");
-                                exit(1);
-                            }
-                            if(-1 == close(prevfd))
-                            {
-                                perror("Error closing prevfd");
-                                exit(1);
-                            }
-                            if(i != numer -1)
-                            {
-                                if(-1==dup2(fd[1], 1))
-                                {
-                                    perror("Error outputting");
-                                    exit(1);
-                                }
-                                if(-1==close(fd[0]))
-                                {
-                                    perror("Error closing output fd0");
-                                    exit(1);
-                                }
-                                if(-1==close(fd[1]))
-                                {
-                                    perror("Error closing output fd1");
-                                    exit(1);
-                                }
-
-                            }
-
-				            if(execvp(argtwelve[0], argtwelve) == -1)
-			            	{
-					                perror("erRROr");
-                                exit(1);
-
-				            }
-                        }
-                        else if(pid > 0)
-                        {
-                            cerr << "inputting from pipe" << endl;
-                            cout << prevfd << endl;
-                            close(prevfd);
-                            prevfd = fd[0];
-                            close(fd[1]);
-                             if(wait(0)==-1)
-                            {
-                                perror("Error |");
-                                exit(1);
-                            }
-
-                        }
-                        */
 
 
 
@@ -471,6 +412,8 @@ while(1)
 
 
                         if(!fork()) {
+                            if(i==0);
+                            else
                         dup2(prevfd, 0);
                         close(prevfd);
                         if(i != numer-1) {
@@ -656,17 +599,9 @@ while(1)
             }}
                 argm = cats;
                 delete [] argm;
-			}
+	}		}
 			else
 			{
-        	int pid = fork();
-		if(pid == -1)
-		{
-			perror("HI I'M SPOON");
-			exit(1);
-		}
-		else if(pid ==0)
-		{
                 string flabs = argv[i];
 				char **argtwelve= new char*[flabs.size()+1];
                 char **cats = argtwelve;
@@ -680,20 +615,30 @@ while(1)
 					moo = strtok(NULL, " ");
 				}
 				argtwelve[numberino] = NULL;
-                argtwelve = cats;
-				if(execvp(argtwelve[0], argtwelve) == -1)
+
+        	int pid = fork();
+		if(pid == -1)
+		{
+			perror("HI I'M SPOON");
+			exit(1);
+		}
+		else if(pid ==0)
+		{
+                if(execvp(argtwelve[0], argtwelve) == -1)
 				{
 					perror("ERRROR");
 				}
-				foroopsies(argtwelve);
 				exit(1);
 			}
 
 		else if(pid >0)
 		{
+
 			if(-1 == wait(0))
 			perror("ERROR WAITING");
 		}
+        argtwelve = cats;
+        delete [] argtwelve;
 }
 
 	}
@@ -710,7 +655,6 @@ while(1)
 //		delete argv[i];
 //	}
 
-}
 }
 
 	return 0;
