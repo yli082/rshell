@@ -424,7 +424,7 @@ while(1)
                     }
                  if(numer > 1)
                  {
-                     if(i == numer-1)
+                     if(i != 0)
                      {
                          dup2(prevfd, 0);
                          close(prevfd);
