@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <vector>
 #include <string.h>
 #include <cstring>
 #include <string>
@@ -81,6 +82,12 @@ while(1)
 	argv[num] = NULL;
 	for(int i = 0; i < num;++i)
 	{
+        int prevfd = open("/dev/null", O_RDONLY);
+        if(prevfd < 0)
+        {
+            perror("Error");
+            exit(1);
+        }
         string command = argv[i];
         if(command.find("<") != string::npos || command.find(">")
             != string::npos|| command.find(">>")!= string::npos ||
@@ -100,16 +107,18 @@ while(1)
 				moo = strtok(NULL, "|");
 			}
 				argm[numer] = NULL;
-                int fd[2];
+
+                char** argtwelve;
+                //int savestdout = dup(1);
+                //int savestdin = dup(0);
+                         for(int i = 0; i < numer;++i)
+            {
+                 int fd[2];
                 if(pipe(fd)==-1)
                 {
                     perror("Error with pipe");
                     exit(1);
                 }
-                int savestdout = dup(1);
-                int savestdin = dup(0);
-                         for(int i = 0; i < numer;++i)
-            {
                 if(command.find("<") != string::npos || command.find(">")
             != string::npos|| command.find(">>")!= string::npos)
                 {
@@ -377,7 +386,7 @@ while(1)
 
 
                             string argmsize = argm[i];
-                            char **argtwelve = new char*[argmsize.size()+1];
+                            argtwelve = new char*[argmsize.size()+1];
 			             	char *moo;
 				            moo =strtok(argm[i], " ");
 				            int numberino = 0;
@@ -393,7 +402,7 @@ while(1)
 				        	    moo = strtok(NULL, " ");
 			            	}
 					argtwelve[numberino] = NULL;
-                    int pid = fork();
+                    /*int pid = fork();
                         if(pid == -1)
                         {
                             perror("yes");
@@ -401,18 +410,36 @@ while(1)
                         }
                         else if(pid == 0)
                         {
-                            cerr << i << ' ' << numer << endl;
-                                if(i == numer)
+                            if(-1==dup2(prevfd, 0))
+                            {
+                                perror("Error putting prev fd into 0");
+                                exit(1);
+                            }
+                            if(-1 == close(prevfd))
+                            {
+                                perror("Error closing prevfd");
+                                exit(1);
+                            }
+                            if(i != numer -1)
+                            {
+                                if(-1==dup2(fd[1], 1))
                                 {
-                                    cerr << "stopping output to pipe" << endl;
-                                    dup2(savestdout, 1);
+                                    perror("Error outputting");
+                                    exit(1);
                                 }
-                                else{
+                                if(-1==close(fd[0]))
+                                {
+                                    perror("Error closing output fd0");
+                                    exit(1);
+                                }
+                                if(-1==close(fd[1]))
+                                {
+                                    perror("Error closing output fd1");
+                                    exit(1);
+                                }
 
-                                cerr << "outputting to pipe" << endl;
-                                    dup2(fd[1],1);
-                                    close(fd[0]);
-                                }
+                            }
+
 				            if(execvp(argtwelve[0], argtwelve) == -1)
 			            	{
 					                perror("erRROr");
@@ -422,28 +449,46 @@ while(1)
                         }
                         else if(pid > 0)
                         {
-                            if(i == 0);
-                            else{
                             cerr << "inputting from pipe" << endl;
-                            dup2(fd[0],0);
+                            cout << prevfd << endl;
+                            close(prevfd);
+                            prevfd = fd[0];
                             close(fd[1]);
-                                }
-                            if(wait(0)==-1)
+                             if(wait(0)==-1)
                             {
                                 perror("Error |");
                                 exit(1);
                             }
+
                         }
+                        */
+
+
 
 
 
         }
 
-            }
 
-                            dup2(savestdin, 0);
-                            close(fd[1]);
-                            close(fd[0]);
+                        if(!fork()) {
+                        dup2(prevfd, 0);
+                        close(prevfd);
+                        if(i != numer-1) {
+                        dup2(fd[1], 1);
+                        close(fd[0]);
+                        close(fd[1]);
+                        }
+                        if(-1==execvp(argtwelve[0], argtwelve)){
+                        perror(argv[i]);
+                        exit(1);
+                        }
+                        }
+
+                        close(prevfd);
+                        prevfd = fd[0];
+                        close(fd[1]);
+                    }
+                    while(wait(NULL)!=-1);
         //start here
         }
 
