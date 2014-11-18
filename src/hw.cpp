@@ -120,7 +120,6 @@ while(1)
                     exit(1);
                 }
                 string newcommand = argm[i];
-                cout << newcommand << endl;
                 if(newcommand.find("<") != string::npos || newcommand.find(">")
             != string::npos|| newcommand.find(">>")!= string::npos)
                 {
@@ -181,8 +180,7 @@ while(1)
                     }
 
 
-                     for(int i = 0; i < numer;i++ )
-                    {
+            //         for(int i = 0; i < numer;i++ )
 
                             string argmsize = argm[i];
                             char **argtwelve = new char*[argmsize.size()+1];
@@ -203,24 +201,38 @@ while(1)
 					argtwelve[numberino] = NULL;
 
 
-                int fdi = 0;
+
+             int pid = fork();
+             if(pid == -1)
+             {
+                  perror("yes");
+                  exit(1);
+             }
+             else if(pid == 0)
+             {
+                 int fdi = 0;
                  int fdo = 0;
                  if(iput+oput == 1|| (appendflag && oput+iput == 2))
 
                  {
                      if(iput == 1)
                      {
-                         cout << argtwelve[numberino -1] << endl;
                          fdi = open(argtwelve[numberino -1], O_RDONLY);
                          if(fdi == -1)
                          {
                              perror("Error line 194");
                              exit(1);
                          }
-                         cout << " i am running " << fdi <<  endl;
-                             close(0);
-                             dup(fdi);
-                            prevfd = dup(1);
+                             if(-1==close(0))
+                        {
+                            perror("Error");
+                            exit(1);
+                        }
+                             if(-1==dup(fdi))
+                            {
+                            perror("Error");
+                            exit(1);
+                        }
                          argtwelve[numberino-1] = NULL;
                      }
                      if(oput == 1 || oput == 2)
@@ -233,27 +245,47 @@ while(1)
                              numwewant = numwewant-1;
                              argtwelve[numwewant] = NULL;
                              flagec =1 ;
-                             close(cherker);
+                            if(-1== close(cherker)){
+                            perror("Error");
+                            exit(1);
+                        }
                          }
                          if(appendflag==1)
                          {
                              fdo = open(argtwelve[numberino-1], O_RDWR|O_CREAT|O_APPEND, 00700);
+                             if(fdo == -1){
+                            perror("Error");
+                            exit(1);
+                        }
                              if(flagec);
-                             else
-                                 close(1);
+                             else{
+                                 if(-1==close(1)){
+                            perror("Error");
+                            exit(1);
+                                 }
+                        }
                          }
                          else{
                             fdo = open(argtwelve[numberino-1], O_RDWR|O_CREAT|O_TRUNC,00700);
+                            if(fdo ==-1){
+                            perror("Error");
+                            exit(1);
+                        }
                             if(flagec);
-                            else
-                                close(1);
+                            else{
+                                if(-1==close(1)){
+                            perror("Error");
+                            exit(1);
+                        }
+                            }
                          }
-                         if(fdo == -1)
-                         {
-                             perror("error line 201");
-                             exit(1);
-                         }
-                            dup(fdo);
+                            if(-1==dup(fdo)){
+                            perror("Error");
+                            exit(1);
+                            }
+
+
+
                          argtwelve[numberino-1] = NULL;
 
                      }
@@ -266,8 +298,14 @@ while(1)
                         perror("Open");
                         exit(1);
                     }
-                    close(0);
-                    dup(fdi);
+                    if(-1==close(0)){
+                            perror("Error");
+                            exit(1);
+                    }
+                    if(-1==dup(fdi)){
+                            perror("Error");
+                            exit(1);
+                    }
                          int flagec = 0;
                          int numwewant = numberino-1;
                          int cherker = atoi(argtwelve[numwewant-1]);
@@ -276,28 +314,46 @@ while(1)
                              numwewant = numwewant-1;
                              argtwelve[numwewant] = NULL;
                              flagec =1 ;
-                             close(cherker);
+                             if(-1==close(cherker)){
+                            perror("Error");
+                            exit(1);
+                    }
                          }
 
                     if(appendflag)
                     {
                         fdo = open(argtwelve[numberino -1], O_RDWR|O_CREAT|O_APPEND, 00700);
+                        if(fdo == -1){
+                            perror("Error");
+                            exit(1);
+                    }
                         if(flagec);
-                        else
-                            close(1);
+                        else{
+                           if(-1== close(1)){
+                            perror("Error");
+                            exit(1);
+                    }
+                        }
                     }
                     else{
                         fdo = open(argtwelve[numberino-1], O_RDWR|O_CREAT|O_TRUNC, 00700);
-                        if(flagec);
-                        else
-                            close(1);
-                        }
-                        if(fdo == -1)
-                        {
+                        if(fdo == -1){
                             perror("Error");
                             exit(1);
+                    }
+
+                        if(flagec);
+                        else{
+                            if(-1==close(1)){
+                            perror("Error");
+                            exit(1);
+                    }
                         }
-                            dup(fdo);
+                        }
+                            if(-1==dup(fdo)){
+                            perror("Error");
+                            exit(1);
+                    }
 
                         argtwelve[numberino-2] = NULL;
                         argtwelve[numberino-1] = NULL;
@@ -310,8 +366,14 @@ while(1)
                         perror("Open");
                         exit(1);
                     }
-                    close(0);
-                    dup(fdi);
+                    if(-1==close(0)){
+                            perror("Error");
+                            exit(1);
+                    }
+                    if(-1==dup(fdi)){
+                            perror("Error");
+                            exit(1);
+                    }
                          int flagec = 0;
                          int numwewant = numberino-2;
                          int cherker = atoi(argtwelve[numwewant-1]);
@@ -320,44 +382,54 @@ while(1)
                              numwewant = numwewant-1;
                              argtwelve[numwewant] = NULL;
                              flagec =1 ;
-                             close(cherker);
+                             if(-1==close(cherker)){
+                            perror("Error");
+                            exit(1);
+                    }
                          }
 
                     if(appendflag)
                     {
                         fdo = open(argtwelve[numberino -2], O_RDWR|O_CREAT|O_APPEND, 00700);
                         if(flagec);
-                        else
-                            close(1);
+                        else{
+                           if(-1== close(1)){
+                            perror("Error");
+                            exit(1);
+                    }
+                        }
                     }
                     else{
                         fdo = open(argtwelve[numberino -2], O_RDWR|O_CREAT|O_TRUNC, 00700);
                         if(flagec);
-                        else
-                            close(1);
-                    }
-                        if(fdo == -1)
-                        {
+                        else{
+                           if(-1== close(1)){
                             perror("Error");
                             exit(1);
+                    }
                         }
-                            close(1);
-                            dup(fdo);
+                    }
+                           if(-1 ==  close(1)){
+                            perror("Error");
+                            exit(1);
+                    }
+                            if(-1==dup(fdo)){
+                            perror("Error");
+                            exit(1);
+                    }
 
 
                         argtwelve[numberino -2] = NULL;
                         argtwelve[numberino -1] = NULL;
+                    }
+                 if(numer > 1)
+                 {
+                     dup2(fd[1], 1);
+                     close(prevfd);
+                     prevfd = dup(fd[2]);
+                     close(fd[0]);
+                     close(fd[1]);
                  }
-
-
-             int pid = fork();
-             if(pid == -1)
-             {
-                  perror("yes");
-                  exit(1);
-             }
-             else if(pid == 0)
-             {
                  if(execvp(argtwelve[0], argtwelve) == -1)
                  {
                      perror("erRROr");
@@ -367,24 +439,19 @@ while(1)
               }
               else if(pid > 0)
               {
-                  if(wait(0)==-1)
-                  {
-                      perror("Error");
-                      exit(1);
-                  }
+                  close(prevfd);
+                        prevfd = fd[0];
+                        close(fd[1]);
 
                }
 
 
 
 
+
             }
 
-            argm =  cats;
-            delete [] argm;
-        }
         else{
-
 
                             string argmsize = argm[i];
                             argtwelve = new char*[argmsize.size()+1];
@@ -406,32 +473,43 @@ while(1)
 
 
 
-
-
-        }
-
-
-                        if(!fork()) {
+                        int pid = fork();
+                        if(pid == -1)
+                        {
+                            perror("error");
+                            exit(1);
+                        }
+                        else if(pid == 0)
+                        {
                             if(i==0);
                             else
-                        dup2(prevfd, 0);
-                        close(prevfd);
-                        if(i != numer-1) {
-                        dup2(fd[1], 1);
-                        close(fd[0]);
-                        close(fd[1]);
+                                dup2(prevfd, 0);
+                            close(prevfd);
+                            if(i!= numer-1)
+                            {
+                                dup2(fd[1], 1);
+                                close(fd[0]);
+                                close(fd[1]);
+                            }
+                            if(-1==execvp(argtwelve[0], argtwelve))
+                            {
+                                perror("error");
+                                exit(1);
+                            }
                         }
-                        if(-1==execvp(argtwelve[0], argtwelve)){
-                        perror(argv[i]);
-                        exit(1);
-                        }
+                        else if(pid > 0)
+                        {
+                            close(prevfd);
+                            prevfd = fd[0];
+                            close(fd[1]);
                         }
 
-                        close(prevfd);
-                        prevfd = fd[0];
-                        close(fd[1]);
-                    }
+
+            }
                     while(wait(NULL)!=-1);
+}
+                    argm = cats;
+                    delete [] argm;
         //start here
         }
 
@@ -656,6 +734,5 @@ while(1)
 //	}
 
 }
-
 	return 0;
 }
