@@ -1,5 +1,5 @@
-rshell
-======
+README.md
+===
 
 ------
 Project source can be downloaded from https://github.com/yli082/rshell.git

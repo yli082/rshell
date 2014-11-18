@@ -1,4 +1,7 @@
 #include <iostream>
+#include <ctype.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -20,6 +23,7 @@ void foroopsies(char *c[10000])
 	delete c[i];
 */
 }
+
 int main()
 {
 
@@ -77,7 +81,373 @@ while(1)
 	argv[num] = NULL;
 	for(int i = 0; i < num;++i)
 	{
-			if(strchr(argv[i], '|'))
+        string command = argv[i];
+        if(command.find("<") != string::npos || command.find(">")
+            != string::npos|| command.find(">>")!= string::npos ||
+            ((command.find("|")!= string::npos) &&(command.find("|")+1 != string::npos)))
+
+        {
+            string forsizea = argv[i];
+		    char **argm = new char*[forsizea.size()+1];
+            char **cats = argm;
+			char *moo;
+			moo = strtok(argv[i], "|");
+			int numer = 0;
+			while (moo != NULL)
+			{
+                argm[numer] = moo;
+				numer++;
+				moo = strtok(NULL, "|");
+			}
+				argm[numer] = NULL;
+                int fd[2];
+                if(pipe(fd)==-1)
+                {
+                    perror("Error with pipe");
+                    exit(1);
+                }
+                int savestdout = dup(1);
+                int savestdin = dup(0);
+                         for(int i = 0; i < numer;++i)
+            {
+                if(command.find("<") != string::npos || command.find(">")
+            != string::npos|| command.find(">>")!= string::npos)
+                {
+
+
+                int iput = 0;
+                int oput = 0;
+                int outorin = 0;
+                int appendflag = 0;
+                string check = argm[i];
+                if(check.find(">>")!= string::npos)
+                {
+                    appendflag = 1;
+                }
+                string inputfile = "";
+                string outputfile = "";
+                for(unsigned int x = 0; x < check.size();++x)
+                {
+                    if(argm[i][x] == '<')
+                    {
+                        if(outorin == 0)
+                        {
+                            outorin = 1;
+                        }
+
+                        ++iput;
+                    }
+                    if(argm[i][x] == '>')
+                    {
+                       if(outorin == 0)
+                       outorin = 2;
+                        ++oput;
+                    }
+                }
+                    if(iput > 1)
+                    {
+
+                        cerr << "Error: Too many inputs" << endl;
+                        exit(1);
+                    }
+                    if(oput > 1)
+                    {
+                        if(appendflag == 0)
+                        {
+                             cerr <<"Error: Too many outputs" << endl;
+                            exit(1);
+                        }
+                        if(appendflag == 1)
+                        {
+                            if(oput > 2)
+                            {
+                                cerr << "Error: Too many outputs" << endl;
+                                exit(1);
+                            }
+                        }
+
+                    }
+
+
+                     for(int i = 0; i < numer;i++ )
+                    {
+
+                            string argmsize = argm[i];
+                            char **argtwelve = new char*[argmsize.size()+1];
+			             	char *moo;
+				            moo =strtok(argm[i], " <>");
+				            int numberino = 0;
+			            	while(moo != NULL)
+			            	{
+                                string exitcomp = moo;
+                                if(exitcomp == "exit")
+                                {
+                                    exit(0);
+                                }
+                                argtwelve[numberino] = moo;
+					            numberino++;
+				        	    moo = strtok(NULL, " <>");
+			            	}
+					argtwelve[numberino] = NULL;
+
+
+             int pid = fork();
+             if(pid == -1)
+             {
+                  perror("yes");
+                  exit(1);
+             }
+             else if(pid == 0)
+             {
+                 int fdi = 0;
+                 int fdo = 0;
+                 if(iput+oput == 1|| (appendflag && oput+iput == 2))
+
+                 {
+                     if(iput == 1)
+                     {
+                         fdi = open(argtwelve[numberino -1], O_RDONLY);
+                         if(fdi == -1)
+                         {
+                             perror("Error line 194");
+                             exit(1);
+                         }
+                             close(0);
+                             dup(fdi);
+                         if(numer != 1)
+                         {
+                             dup2(fd[1], 1);
+                             close(fd[0]);
+                         }
+
+                         argtwelve[numberino-1] = NULL;
+                     }
+                     if(oput == 1 || oput == 2)
+                     {
+                         int flagec = 0;
+                         int numwewant = numberino-1;
+                         int cherker = atoi(argtwelve[numwewant-1]);
+                         if(isdigit(argtwelve[numwewant-1][0]))
+                         {
+                             numwewant = numwewant-1;
+                             argtwelve[numwewant] = NULL;
+                             flagec =1 ;
+                             close(cherker);
+                         }
+                         if(appendflag==1)
+                         {
+                             fdo = open(argtwelve[numberino-1], O_RDWR|O_CREAT|O_APPEND, 00700);
+                             if(flagec);
+                             else
+                                 close(1);
+                         }
+                         else{
+                            fdo = open(argtwelve[numberino-1], O_RDWR|O_CREAT|O_TRUNC,00700);
+                            if(flagec);
+                            else
+                                close(1);
+                         }
+                         if(fdo == -1)
+                         {
+                             perror("error line 201");
+                             exit(1);
+                         }
+                            dup(fdo);
+                         argtwelve[numberino-1] = NULL;
+
+                     }
+                 }
+                 else if(outorin == 1)
+                 {
+                    fdi = open(argtwelve[numberino -2], O_RDWR);
+                    if(fdi == -1)
+                    {
+                        perror("Open");
+                        exit(1);
+                    }
+                    close(0);
+                    dup(fdi);
+                         int flagec = 0;
+                         int numwewant = numberino-1;
+                         int cherker = atoi(argtwelve[numwewant-1]);
+                         if(isdigit(argtwelve[numwewant-1][0]))
+                         {
+                             numwewant = numwewant-1;
+                             argtwelve[numwewant] = NULL;
+                             flagec =1 ;
+                             close(cherker);
+                         }
+
+                    if(appendflag)
+                    {
+                        fdo = open(argtwelve[numberino -1], O_RDWR|O_CREAT|O_APPEND, 00700);
+                        if(flagec);
+                        else
+                            close(1);
+                    }
+                    else{
+                        fdo = open(argtwelve[numberino-1], O_RDWR|O_CREAT|O_TRUNC, 00700);
+                        if(flagec);
+                        else
+                            close(1);
+                        }
+                        if(fdo == -1)
+                        {
+                            perror("Error");
+                            exit(1);
+                        }
+                            dup(fdo);
+
+                        argtwelve[numberino-2] = NULL;
+                        argtwelve[numberino-1] = NULL;
+                 }
+                 else if(outorin == 2)
+                 {
+                    fdi = open(argtwelve[numberino-1], O_RDWR);
+                    if(fdi == -1)
+                    {
+                        perror("Open");
+                        exit(1);
+                    }
+                    close(0);
+                    dup(fdi);
+                         int flagec = 0;
+                         int numwewant = numberino-2;
+                         int cherker = atoi(argtwelve[numwewant-1]);
+                         if(isdigit(argtwelve[numwewant-1][0]))
+                         {
+                             numwewant = numwewant-1;
+                             argtwelve[numwewant] = NULL;
+                             flagec =1 ;
+                             close(cherker);
+                         }
+
+                    if(appendflag)
+                    {
+                        fdo = open(argtwelve[numberino -2], O_RDWR|O_CREAT|O_APPEND, 00700);
+                        if(flagec);
+                        else
+                            close(1);
+                    }
+                    else{
+                        fdo = open(argtwelve[numberino -2], O_RDWR|O_CREAT|O_TRUNC, 00700);
+                        if(flagec);
+                        else
+                            close(1);
+                    }
+                        if(fdo == -1)
+                        {
+                            perror("Error");
+                            exit(1);
+                        }
+                            close(1);
+                            dup(fdo);
+
+
+                        argtwelve[numberino -2] = NULL;
+                        argtwelve[numberino -1] = NULL;
+                 }
+
+                 if(execvp(argtwelve[0], argtwelve) == -1)
+                 {
+                     perror("erRROr");
+                     exit(1);
+
+                 }
+              }
+              else if(pid > 0)
+              {
+                  if(wait(0)==-1)
+                  {
+                      perror("Error");
+                      exit(1);
+                  }
+
+               }
+
+
+
+
+            }
+
+            argm =  cats;
+            delete [] argm;
+        }
+        else{
+
+
+                            string argmsize = argm[i];
+                            char **argtwelve = new char*[argmsize.size()+1];
+			             	char *moo;
+				            moo =strtok(argm[i], " ");
+				            int numberino = 0;
+			            	while(moo != NULL)
+			            	{
+                                string exitcomp = moo;
+                                if(exitcomp == "exit")
+                                {
+                                    exit(0);
+                                }
+                                argtwelve[numberino] = moo;
+					            numberino++;
+				        	    moo = strtok(NULL, " ");
+			            	}
+					argtwelve[numberino] = NULL;
+                    int pid = fork();
+                        if(pid == -1)
+                        {
+                            perror("yes");
+                            exit(1);
+                        }
+                        else if(pid == 0)
+                        {
+                            cerr << i << ' ' << numer << endl;
+                                if(i == numer)
+                                {
+                                    cerr << "stopping output to pipe" << endl;
+                                    dup2(savestdout, 1);
+                                }
+                                else{
+
+                                cerr << "outputting to pipe" << endl;
+                                    dup2(fd[1],1);
+                                    close(fd[0]);
+                                }
+				            if(execvp(argtwelve[0], argtwelve) == -1)
+			            	{
+					                perror("erRROr");
+                                exit(1);
+
+				            }
+                        }
+                        else if(pid > 0)
+                        {
+                            if(i == 0);
+                            else{
+                            cerr << "inputting from pipe" << endl;
+                            dup2(fd[0],0);
+                            close(fd[1]);
+                                }
+                            if(wait(0)==-1)
+                            {
+                                perror("Error |");
+                                exit(1);
+                            }
+                        }
+
+
+
+        }
+
+            }
+
+                            dup2(savestdin, 0);
+                            close(fd[1]);
+                            close(fd[0]);
+        //start here
+        }
+
+			else if(strchr(argv[i], '|'))
 			{
 
 				char *pch = strchr(argv[i], '|');
@@ -219,32 +589,28 @@ while(1)
 
                                    exit(1);
 
-				            }
-				              exit(1);
-                        }
-                        else if(pid > 0)
-                        {
-
-                            if(waitpid(-1, &nu, 0) == -1)
-                            {
-                                perror("error");
-                                exit(1);
-                            }
-                            if(nu!= 0 )
-                            {
-                                break;
-                                exit(1);
-                            }
-
-                        }
-                    }
-
-                    argm = cats;
                     delete [] argm;
 				}
+                else if(pid > 0)
+                {
+                    if(waitpid(-1, &nu, 0)==-1)
+                    {
+                        perror("Error");
+                        exit(1);
+                    }
+                    if(nu!=0)
+                    {
+                        break;
+                        exit(1);
+                        }
+
+                }
 
 
 
+            }}
+                argm = cats;
+                delete [] argm;
 			}
 			else
 			{
@@ -299,6 +665,7 @@ while(1)
 //		delete argv[i];
 //	}
 
+}
 }
 
 	return 0;
