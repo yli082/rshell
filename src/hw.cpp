@@ -424,9 +424,17 @@ while(1)
                     }
                  if(numer > 1)
                  {
+                     if(i == numer-1)
+                     {
+                         dup2(prevfd, 0);
+                         close(prevfd);
+                     }
+                     else
+                     {
                      dup2(fd[1], 1);
                      close(prevfd);
                      prevfd = dup(fd[2]);
+                     }
                      close(fd[0]);
                      close(fd[1]);
                  }
