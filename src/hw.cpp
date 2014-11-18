@@ -186,14 +186,46 @@ while(1)
                         }
 
                     }
+                    /*
+                        int frontindice = 0;
+                        int backindice = 0;
+                            for(unsigned int c = 0; c < newcommand.size();++c)
+                            {
+                                if(newcommand[c] == ' ')
+                                {
 
+                                }
+                                else
+                                {
+                                    if(newcommand[c]== '\"' )
+                                    {
+                                        frontindice = c;
+                                        cout << "front is good" << endl;
+                                        break;
+                                    }
 
-            //         for(int i = 0; i < numer;i++ )
+                                }
+                            }
+                            for(unsigned int c = newcommand.size()-1; c > 0;++c)
+                            {
+                                if(newcommand[c]==' ');
+                                else
+                                {
+                                    if(newcommand[c]=='\"')
+                                    {
+                                        backindice = c;
+                                        cout <<"end is good" << endl;
+                                        break;
+                                    }
+                                }
 
+                            }
+                            cout << frontindice << ' ' << backindice << endl;
+                            */
                             string argmsize = argm[i];
                             char **argtwelve = new char*[argmsize.size()+1];
 			             	char *moo;
-				            moo =strtok(argm[i], " <>\"");
+				            moo =strtok(argm[i], " <>");
 				            int numberino = 0;
 			            	while(moo != NULL)
 			            	{
@@ -204,11 +236,9 @@ while(1)
                                 }
                                 argtwelve[numberino] = moo;
 					            numberino++;
-				        	    moo = strtok(NULL, " <>\"");
+				        	    moo = strtok(NULL, " <>");
 			            	}
 					argtwelve[numberino] = NULL;
-
-
 
              int pid = fork();
              if(pid == -1)
@@ -220,7 +250,26 @@ while(1)
              {
                  int fdi = 0;
                  int fdo = 0;
-                 if(ecinput);
+                 int validecinput = 0;
+                 if(ecinput)
+                 {
+
+                            string pie = argtwelve[numberino-1];
+                        if(argtwelve[1][0] == '\"')
+                        {
+                            ++validecinput;
+                            argtwelve[1] = strtok(argtwelve[1], "\"");
+                        }
+
+                        if(argtwelve[numberino-1][pie.size()-1] == '\"')
+                        {
+                            ++validecinput;
+                            argtwelve[numberino-1] = strtok(argtwelve[numberino-1], "\"");
+
+                        }
+
+                 }
+                 if(validecinput == 2);
                  else if(iput+oput == 1|| (appendflag && oput+iput == 2))
 
                  {
