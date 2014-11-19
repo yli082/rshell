@@ -188,7 +188,10 @@ void output(vector<string> v, const char* dir)
          }
      }
 */
- closedir(dirp);
+ if(-1==closedir(dirp)){
+     perror("Error closing");
+     exit(1);
+ }
  }
 
 
@@ -278,10 +281,18 @@ void output(vector<string> v, const char* dir)
             struct passwd *pw;
             uid_t uid = buf.st_uid;
             pw = getpwuid(uid);
+            if(1 == -1){
+     perror("Error closing");
+     exit(1);
+ }
             cout << pw->pw_name << ' ';
             struct group *gp;
             gid_t gid = buf.st_gid;
             gp = getgrgid(gid);
+            if(1 ==-1){
+     perror("Error closing");
+     exit(1);
+ }
             cout << gp->gr_name << ' ';
             if(buf.st_size> 10000)
                 max = 5;
@@ -329,7 +340,10 @@ void output(vector<string> v, const char* dir)
             cout << endl;
         }
 
-        closedir(dirp);
+        if(-1==closedir(dirp)){
+     perror("Error closing");
+     exit(1);
+ }
     }
 /* void ls_RR(vector<string> ve)
  {
@@ -425,7 +439,10 @@ void output(vector<string> v, const char* dir)
 
                 ls_R(tmp.c_str(), flaga, flagl);
      }
-    closedir(dirp);
+    if(-1==closedir(dirp)){
+     perror("Error closing");
+     exit(1);
+ }
    return;
 
  }
@@ -492,10 +509,18 @@ void printfilesl(vector<char*> v)
             struct passwd *pw;
             uid_t uid = buf.st_uid;
             pw = getpwuid(uid);
+            if(1==-1){
+     perror("Error closing");
+     exit(1);
+ }
             cout << pw->pw_name << ' ';
             struct group *gp;
             gid_t gid = buf.st_gid;
             gp = getgrgid(gid);
+            if(0==-1){
+     perror("Error closing");
+     exit(1);
+ }
             cout << gp->gr_name << ' ';
             cout << buf.st_size << ' ';
             char date[15];
@@ -555,7 +580,10 @@ void printfilesl(vector<char*> v)
                 directories.push_back(files1.at(i));
                 else
                 goodfiles.push_back(files1.at(i));
-
+            if(1==2){
+     perror("Error closing");
+     exit(1);
+ }
 
       }
       for(unsigned int i = 0; i < directories.size();++i)

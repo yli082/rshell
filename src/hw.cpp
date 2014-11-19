@@ -34,8 +34,18 @@ while(1)
 
 	string stringz;
 	char *host = new char[256];
-	gethostname(host, 256);
+	if(-1==gethostname(host, 256))
+    {
+        perror("Error host name");
+        exit(1);
+    }
+
 	cout << getlogin() << '@' << host<< "$ ";
+    if(0 == -1)
+    {
+        perror("Error get login");
+        exit(1);
+    }
 	delete [] host;
 
 	getline(cin, stringz);
@@ -120,6 +130,7 @@ while(1)
                     exit(1);
                 }
                 string newcommand = argm[i];
+               // cout << newcommand << endl;
                 if(newcommand.find("<") != string::npos || newcommand.find(">")
             != string::npos|| newcommand.find(">>")!= string::npos)
                 {
@@ -186,42 +197,6 @@ while(1)
                         }
 
                     }
-                    /*
-                        int frontindice = 0;
-                        int backindice = 0;
-                            for(unsigned int c = 0; c < newcommand.size();++c)
-                            {
-                                if(newcommand[c] == ' ')
-                                {
-
-                                }
-                                else
-                                {
-                                    if(newcommand[c]== '\"' )
-                                    {
-                                        frontindice = c;
-                                        cout << "front is good" << endl;
-                                        break;
-                                    }
-
-                                }
-                            }
-                            for(unsigned int c = newcommand.size()-1; c > 0;++c)
-                            {
-                                if(newcommand[c]==' ');
-                                else
-                                {
-                                    if(newcommand[c]=='\"')
-                                    {
-                                        backindice = c;
-                                        cout <<"end is good" << endl;
-                                        break;
-                                    }
-                                }
-
-                            }
-                            cout << frontindice << ' ' << backindice << endl;
-                            */
                             string argmsize = argm[i];
                             char **argtwelve = new char*[argmsize.size()+1];
 			             	char *moo;
@@ -449,6 +424,10 @@ while(1)
                     if(appendflag)
                     {
                         fdo = open(argtwelve[numberino -2], O_RDWR|O_CREAT|O_APPEND, 00700);
+                        if(fdo == -1){
+                             perror("Error");
+                             exit(1);
+                         }
                         if(flagec);
                         else{
                            if(-1== close(1)){
@@ -459,23 +438,22 @@ while(1)
                     }
                     else{
                         fdo = open(argtwelve[numberino -2], O_RDWR|O_CREAT|O_TRUNC, 00700);
+                        if(-1==fdo){
+                             perror("Error!");
+                             exit(1);
+                         }
                         if(flagec);
                         else{
                            if(-1== close(1)){
-                            perror("Error");
+                            perror("Error!!");
                             exit(1);
                     }
                         }
                     }
-                           if(-1 ==  close(1)){
-                            perror("Error");
+                            if(-1==dup2(fdo, 1)){
+                            perror("Error!!!!");
                             exit(1);
                     }
-                            if(-1==dup(fdo)){
-                            perror("Error");
-                            exit(1);
-                    }
-
 
                         argtwelve[numberino -2] = NULL;
                         argtwelve[numberino -1] = NULL;
@@ -490,17 +468,42 @@ while(1)
                  {
                      if(i != 0)
                      {
-                         dup2(prevfd, 0);
-                         close(prevfd);
+                         if(-1==dup2(prevfd, 0))
+                         {
+                             perror("Error");
+                             exit(1);
+                         }
+                         if(-1==close(prevfd))
+                         {
+                             perror("Error");
+                             exit(1);
+                         }
                      }
                      else
                      {
-                     dup2(fd[1], 1);
-                     close(prevfd);
-                     prevfd = dup(fd[2]);
+                        if(-1==dup2(fd[1], 1)){
+                             perror("Error");
+                             exit(1);
+                         }
+                     if(-1==close(prevfd)){
+                             perror("Error");
+                             exit(1);
+                         }
+                     prevfd = dup(fd[0]);
+                     if(prevfd==-1){
+                             perror("Error");
+                             exit(1);
+                         }
                      }
-                     close(fd[0]);
-                     close(fd[1]);
+                     if(-1==close(fd[0])){
+                             perror("Error");
+                             exit(1);
+                         }
+
+                     if(-1==close(fd[1])){
+                             perror("Error");
+                             exit(1);
+                         }
                  }
                  if(ecinput)
                  {
@@ -522,9 +525,15 @@ while(1)
               }
               else if(pid > 0)
               {
-                  close(prevfd);
+                  if(-1==close(prevfd)){
+                             perror("Error");
+                             exit(1);
+                         }
                         prevfd = fd[0];
-                        close(fd[1]);
+                        if(-1==close(fd[1])){
+                             perror("Error");
+                             exit(1);
+                         }
 
                }
 
@@ -565,14 +574,31 @@ while(1)
                         else if(pid == 0)
                         {
                             if(i==0);
-                            else
-                                dup2(prevfd, 0);
-                            close(prevfd);
+                            else{
+                                if(-1==dup2(prevfd, 0)){
+                             perror("Error");
+                             exit(1);
+                         }
+                            }
+                            if(-1==close(prevfd)){
+                             perror("Error");
+                             exit(1);
+                         }
                             if(i!= numer-1)
                             {
-                                dup2(fd[1], 1);
-                                close(fd[0]);
-                                close(fd[1]);
+                               if(-1== dup2(fd[1], 1)){
+                             perror("Error");
+                             exit(1);
+                         }
+
+                                if(-1==close(fd[0])){
+                             perror("Error");
+                             exit(1);
+                         }
+                                if(-1==close(fd[1])){
+                             perror("Error");
+                             exit(1);
+                         }
                             }
                             if(-1==execvp(argtwelve[0], argtwelve))
                             {
@@ -582,14 +608,24 @@ while(1)
                         }
                         else if(pid > 0)
                         {
-                            close(prevfd);
+                            if(-1==close(prevfd)){
+                             perror("Error");
+                             exit(1);
+                         }
                             prevfd = fd[0];
-                            close(fd[1]);
+                            if(-1==close(fd[1])){
+                             perror("Error");
+                             exit(1);
+                         }
                         }
 
 
             }
                     while(wait(NULL)!=-1);
+                    if(1 == 2){
+                             perror("Error");
+                             exit(1);
+                         }
 }
                     argm = cats;
                     delete [] argm;

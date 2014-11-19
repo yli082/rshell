@@ -60,11 +60,6 @@ When chaining nonexistant or commands, will output one extra error.
 
 & works as if && was entered, and | works as if || was entered
 
-If more than 10000 characters entered, will memory leak
-
-Single commands such as |, &, ; will output an error, which will say success
-
-Random memory corruption
 
 
 hw1:
@@ -75,4 +70,13 @@ Output for ls doesn't output exactly like how normal ls does
 
 bin/ls file dir file will print file than print dir than file, rather than print both files before dir
 
+hw2:
+
+echo word > file | something, will echo word to something, instead of file.
+
+Sometimes displays two error messages
+
+Does not support &
+
+>>> only supports cat
 ```

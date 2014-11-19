@@ -1,0 +1,367 @@
+Script started on Tue 18 Nov 2014 11:19:03 PM PST
+~
+yli082@hammer $ cd rshell
+~/rshell
+yli082@hammer $ make rshell
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -g -Wall -Werror -ansi -pedantic src/hw.cpp -o bin/rshell
+~/rshell
+yli082@hammer $ bin/rshell
+yli082@hammer.cs.ucr.edu$ #testing in out redirection
+yli082@hammer.cs.ucr.edu$ ls > file
+yli082@hammer.cs.ucr.edu$ cat file      < file
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+yli082@hammer.cs.ucr.edu$ ls file >>          ls >> file
+yli082@hammer.cs.ucr.edu$ ct <      cat < file
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+yli082@hammer.cs.ucr.edu$ cat < file >  file2
+yli082@hammer.cs.ucr.edu$ cat < file2
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+yli082@hammer.cs.ucr.edu$ cat < file >> file2
+yli082@hammer.cs.ucr.edu$ cat < file
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+yli082@hammer.cs.ucr.edu$ cat > file2 < file
+yli082@hammer.cs.ucr.edu$ cat < file2
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+yli082@hammer.cs.ucr.edu$ cat < file
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+tests
+yli082@hammer.cs.ucr.edu$ cat < file < file
+Error: Too many inputs
+~/rshell
+yli082@hammer $ cat > file > file
+^C
+~/rshell
+yli082@hammer $ cat > file > file[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+[0m[01;32m&[0m*    file   [01;32mfile10[0m*  file3  file5    Makefile  README.md  [01;34mtests[0m/
+[01;34mbin[0m/  file1  [01;32mfile2[0m*   file4  LICENSE  poo       [01;34msrc[0m/
+[m~/rshell
+yli082@hammer $ bin/rshell
+yli082@hammer.cs.ucr.edu$ cat > 2>      vim test.cpp
+[?1049h[?1h=[1;57r[?12;25h[?12l[?25h[27m[m[91m[H[2J[?25l[57;1H"test.cpp" [New File][>c[1;1H[33m  1 [m[91m
+[1m[34m~                                                                                      [3;1H~                                                                                      [4;1H~                                                                                      [5;1H~                                                                                      [6;1H~                                                                                      [7;1H~                                                                                      [8;1H~                                                                                      [9;1H~                                                                                      [10;1H~                                                                                      [11;1H~                                                                                      [12;1H~                                                                                      [13;1H~                                                                                      [14;1H~                                                                                      [15;1H~                                                                                      [16;1H~                                                                                      [17;1H~                                                                                      [18;1H~                                                                                      [19;1H~                                                                                      [20;1H~                                                                                      [21;1H~                                                                                      [22;1H~                                                                                      [23;1H~                                                                                      [24;1H~                                                                                      [25;1H~                                                                                      [26;1H~                                                                                      [27;1H~                                                                                      [28;1H~                                                                                      [29;1H~                                                                                      [30;1H~                                                                                      [31;1H~                                                                                      [32;1H~                                                                                      [33;1H~                                                                                      [34;1H~                                                                                      [35;1H~                                                                                      [36;1H~                                                                                      [37;1H~                                                                                      [38;1H~                                                                                      [39;1H~                                                                                      [40;1H~                                                                                      [41;1H~                                                                                      [42;1H~                                                                                      [43;1H~                                                                                      [44;1H~                                                                                      [45;1H~                                                                                      [46;1H~                                                                                      [47;1H~                                                                                      [48;1H~                                                                                      [49;1H~                                                                                      [50;1H~                                                                                      [51;1H~                                                                                      [52;1H~                                                                                      [53;1H~                                                                                      [54;1H~                                                                                      [55;1H~                                                                                      [56;1H~                                                                                      [m[91m[57;70H0,0-1[9CAll[1;5H[?12l[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[?25l[57;1H[1m-- INSERT --[m[91m[57;13H[K[57;70H0,1[11CAll[1;5H[?12l[?25h[?25l[33m [m[91ms[57;70H1,2[1;6H[?12l[?25h[?25lsd[57;72H3[1;7H[?12l[?25h[?25lda[57;72H4[1;8H[?12l[?25h[?25las[57;72H5[1;9H[?12l[?25h[?25lsd[57;72H6[1;10H[?12l[?25h[?25ldp[57;72H7[1;11H[?12l[?25h[?25lpo[57;72H8[1;12H[?12l[?25h[?25loa[57;72H9[1;13H[?12l[?25h[?25las[57;72H10[1;14H[?12l[?25h[?25lsk[57;73H1[1;15H[?12l[?25h[?25lkd[57;73H2[1;16H[?12l[?25h[?25l[57;73H3[1;17H[?12l[?25h[?25l o[57;73H4[1;18H[?12l[?25h[?25lop[57;73H5[1;19H[?12l[?25h[?25lpa[57;73H6[1;20H[?12l[?25h[?25las[57;73H7[1;21H[?12l[?25h[?25l[57;73H8[1;22H[?12l[?25h[?25l d[57;73H9[1;23H[?12l[?25h[?25l
+[33m  2 [m[91m[2;5H[K[57;70H2,1 [2;5H[?12l[?25h[?25l[33m [m[91ma[57;72H2[2;6H[?12l[?25h[?25las[57;72H3[2;7H[?12l[?25h[?25lsd[57;72H4[2;8H[?12l[?25h[?25ldo[57;72H5[2;9H[?12l[?25h[?25lop[57;72H6[2;10H[?12l[?25h[?25lpa[57;72H7[2;11H[?12l[?25h[?25las[57;72H8[2;12H[?12l[?25h[?25lsk[57;72H9[2;13H[?12l[?25h[?25lkd[57;72H10[2;14H[?12l[?25h[?25ldp[57;73H1[2;15H[?12l[?25h[?25lpo[57;73H2[2;16H[?12l[?25h[?25loa[57;73H3[2;17H[?12l[?25h[?25las[57;73H4[2;18H[?12l[?25h[?25lsk[57;73H5[2;19H[?12l[?25h[57;1H[K[2;18H[?25l[57;70H2,14[10CAll[2;18H[?12l[?25h[?25l[57;70H[K[57;1H:[?12l[?25hw[?25l[?12l[?25hq[?25l[?12l[?25h[?25l"test.cpp" [New] 2L, 34C written
+[1m[37m[41mError detected while processing BufWinLeave Auto commands for "*":[m[91m
+[1m[37m[41mE739: Cannot create directory: /home/csmajs/yli082/.vim/view[m[91m
+[1m[37m[41mE190: Cannot open "/home/csmajs/yli082/.vim/view/~=+rshell=+test.cpp=" for writing
+[m[91m[39;49m[?1l>[?12l[?25h[?1049lyli082@hammer.cs.ucr.edu$ ca  cat >   < test.cpp > file
+yli082@hammer.cs.ucr.edu$ cat < file
+sdasdpoaskd opas d
+asdopaskdpoask
+yli082@hammer.cs.ucr.edu$ cat < test.cpp 2> file
+Open: No such file or directory
+yli082@hammer.cs.ucr.edu$ ca  file 2> file2
+yli082@hammer.cs.ucr.edu$ cat file    < file2
+Usage: file [-bchikLNnprsvz0] [--apple] [--mime-encoding] [--mime-type]
+            [-e testname] [-F separator] [-f namefile] [-m magicfiles] file ...
+       file -C [-m magicfiles]
+       file [--help]
+yli082@hammer.cs.ucr.edu$ #piping
+yli082@hammer.cs.ucr.edu$ ls | grep bin
+bin
+yli082@hammer.cs.ucr.edu$ ls | grep file
+file
+file1
+file10
+file2
+file3
+file4
+file5
+Makefile
+yli082@hammer.cs.ucr.edu$ ls | grep file | grep file1
+file1
+file10
+yli082@hammer.cs.ucr.edu$ cat < file
+sdasdpoaskd opas d
+asdopaskdpoask
+yli082@hammer.cs.ucr.edu$ cat < file | grep sda
+sdasdpoaskd opas d
+yli082@hammer.cs.ucr.edu$ cat >       echo nuggts    ets > file |   | grep sda
+yli082@hammer.cs.ucr.edu$ cat < file
+yli082@hammer.cs.ucr.edu$ ls > file | grep bn in | ls ps >      > file         l ls > ile | grep          file | grep bin
+yli082@hammer.cs.ucr.edu$ cat file
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+poo
+README.md
+src
+test.cpp
+tests
+yli082@hammer.cs.ucr.edu$ ls -a > file | c   
+yli082@hammer.cs.ucr.edu$ cat < file
+.
+..
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+.git
+LICENSE
+Makefile
+poo
+README.md
+src
+test.cpp
+tests
+yli082@hammer.cs.ucr.edu$ ls -a -a -a -a -a -a -a > file |   
+yli082@hammer.cs.ucr.edu$ cat < file
+.
+..
+&
+bin
+file
+file1
+file10
+file2
+file3
+file4
+file5
+.git
+LICENSE
+Makefile
+poo
+README.md
+src
+test.cpp
+tests
+yli082@hammer.cs.ucr.edu$ echo >   this > t file
+yli082@hammer.cs.ucr.edu$ cat < file
+this
+yli082@hammer.cs.ucr.edu$ cat < t file | tr a-z A-Z > fil2
+yli082@hammer.cs.ucr.edu$ cat < file2  2
+THIS
+yli082@hammer.cs.ucr.edu$ cat < file | tr A-          2 L2 | TR a-z        TR    tr A-Z A-Z     a-z | tee new out | tr a-z A-Z |   > newout2^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[D^[[C^[[A                                                                                                        
+Error line 194: No such file or directory
+error: No such file or directory
+yli082@hammer.cs.ucr.edu$ cat < file 2 | tr A-Z a-z | tee new out |         wout | tr a-z A-z Z > newout2
+yli082@hammer.cs.ucr.edu$ cat < new out;       out; cat < newout2
+this
+THIS
+yli082@hammer.cs.ucr.edu$ cat < nsd  asdasdasd
+Error line 194: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls 0> temp
+&    fil2  file1   file2  file4  LICENSE   newout   poo        src   test.cpp
+bin  file  file10  file3  file5  Makefile  newout2  README.md  temp  tests
+yli082@hammer.cs.ucr.edu$ l cat < temp
+yli082@hammer.cs.ucr.edu$ ls 1>temp
+yli082@hammer.cs.ucr.edu$ cat < temp
+&
+bin
+fil2
+file
+file1
+file10
+file2
+file3
+file4
+file5
+LICENSE
+Makefile
+newout
+newout2
+poo
+README.md
+src
+temp
+test.cpp
+tests
+yli082@hammer.cs.ucr.edu$ ls    ls 2> temp
+&    fil2  file1   file2  file4  LICENSE   newout   poo        src   test.cpp
+bin  file  file10  file3  file5  Makefile  newout2  README.md  temp  tests
+yli082@hammer.cs.ucr.edu$ ls asdasdas |   2> temp
+yli082@hammer.cs.ucr.edu$ cat temp
+ls: cannot access asdasdas: No such file or directory
+yli082@hammer.cs.ucr.edu$ ls 1> temp > temp
+Error: Too many outputs
+~/rshell
+yli082@hammer $ cat <<< "I am a string"
+I am a string
+~/rshell
+yli082@hammer $ cat <<< "i am a string" | grep string
+i am a string
+~/rshell
+yli082@hammer $ cat <<< "ia[K am a string" | grep a
+i am a string
+~/rshell
+yli082@hammer $ cat <<< "i am a stirng" grep [K[K[K[K[K| grep zzzzzzzz
+~/rshell
+yli082@hammer $ echo dsadsad > file [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls | exit
+~/rshell
+yli082@hammer $ exit
+exit
+
+Script done on Tue 18 Nov 2014 11:35:12 PM PST
