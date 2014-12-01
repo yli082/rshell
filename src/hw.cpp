@@ -1,4 +1,5 @@
 #include <iostream>
+#include <dirent.h>
 #include <ctype.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -25,14 +26,54 @@ void foroopsies(char *c[10000])
 */
 }
 
+char* getpath(char* command)
+{
+    char *path = getenv("PATH");
+    string cmd = command;
+    char *paht = strtok(path, ":");
+    while(paht != NULL)
+    {
+        struct stat buf;
+        if(stat(paht, &buf) == -1)
+        {
+        }
+        else
+        {
+        DIR *dirp = opendir(paht);
+        if(dirp == NULL)
+        {
+            perror(paht);
+            exit(1);
+        }
+        dirent *direntp;
+        while((direntp = readdir(dirp)))
+        {
+            string match = direntp->d_name;
+            if(direntp == NULL)
+            {
+                perror("Error");
+                exit(1);
+            }
+            if(cmd == match)
+            {
+
+                return paht;
+            }
+
+        }
+        }
+        paht = strtok(NULL, ":");
+    }
+
+    return command;
+}
 int main()
 {
 
 
 while(1)
 {
-
-	string stringz;
+    	string stringz;
 	char *host = new char[256];
 	if(-1==gethostname(host, 256))
     {
@@ -821,7 +862,11 @@ while(1)
 		}
 		else if(pid ==0)
 		{
-                if(execvp(argtwelve[0], argtwelve) == -1)
+            char* zebras = getpath(argtwelve[0]);
+                string zebrameat = zebras;
+                string zebs = argtwelve[0];
+                zebrameat += '/' + zebs;
+                if(execv(zebrameat.c_str(), argtwelve) == -1)
 				{
 					perror("ERRROR");
 				}
