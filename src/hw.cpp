@@ -54,11 +54,13 @@ char* getpath(char* command)
                 perror("Error");
                 exit(1);
             }
-            if(cmd == match)
+            if(cmd == match && (S_IXUSR & buf.st_mode))
             {
-
+                strcat(paht, "/");
+                strcat(paht, command);
                 return paht;
             }
+
 
         }
         }
@@ -863,10 +865,7 @@ while(1)
 		else if(pid ==0)
 		{
             char* zebras = getpath(argtwelve[0]);
-                string zebrameat = zebras;
-                string zebs = argtwelve[0];
-                zebrameat += '/' + zebs;
-                if(execv(zebrameat.c_str(), argtwelve) == -1)
+                if(execv(zebras, argtwelve) == -1)
 				{
 					perror("ERRROR");
 				}
