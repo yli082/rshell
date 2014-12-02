@@ -1,4 +1,5 @@
 #include <iostream>
+#include <signal.h>
 #include <dirent.h>
 #include <ctype.h>
 #include <sys/stat.h>
@@ -17,13 +18,15 @@ using namespace std;
 
 void foroopsies(char *c[10000])
 {
-	/*int i= 0;
-	for(; c[i] != 0;++i)
-	{
-		delete c[i];
-	}
-	delete c[i];
-*/
+}
+
+int countfun(string s)
+{
+    int cuont = 0;
+    for(unsigned int i = 0; i < s.size();++i)
+        if(s[i] == '|') cuont ++;
+
+        return cuont;
 }
 
 char* getpath(char* command)
@@ -69,14 +72,32 @@ char* getpath(char* command)
 
     return command;
 }
+static void sighand(int sig)
+{
+    if(sig == SIGINT)
+    {
+    int child = getpid();
+    if(-1 == child)
+    {
+        perror("child");
+        exit(0);
+    }
+    if(child == 0)
+    {
+        exit(0);
+    }
+    }
+
+}
 int main()
 {
+    signal(SIGINT, sighand);
 
 
 while(1)
 {
     	string stringz;
-	char *host = new char[256];
+/*	char *host = new char[256];
 	if(-1==gethostname(host, 256))
     {
         perror("Error host name");
@@ -84,12 +105,16 @@ while(1)
     }
 
 	cout << getlogin() << '@' << host<< "$ ";
+    */
+    char bzxc[1024];
+    getcwd(bzxc, sizeof(bzxc));
+    cout << bzxc << "$";
     if(0 == -1)
     {
         perror("Error get login");
         exit(1);
     }
-	delete [] host;
+	//delete [] host;
 
 	getline(cin, stringz);
 	if(stringz == "exit")
@@ -99,7 +124,7 @@ while(1)
 	strcpy(str, stringz.c_str());
 	char *str2 = new char[stringz.size()+1];
 	strcpy(str2, stringz.c_str());
-	char *test = strtok(str2, ";&|");
+	char *test = strtok(str2, " ;&|");
 	for(unsigned int i = 0; i < stringz.size();++i)
 	{
 		if(str[i] == '#')
@@ -113,8 +138,6 @@ while(1)
 	{
         delete [] str;
         delete [] str2;
-		cerr << ("Error");
-        exit(1);
 	}
 	else
     {
@@ -144,7 +167,8 @@ while(1)
         string command = argv[i];
         if(command.find("<") != string::npos || command.find(">")
             != string::npos|| command.find(">>")!= string::npos ||
-            ((command.find("|")!= string::npos) &&(command.find("|")+1 != string::npos)))
+            (countfun(command) == 1)
+            )
 
         {
             string forsizea = argv[i];
@@ -257,7 +281,7 @@ while(1)
 				        	    moo = strtok(NULL, " <>");
 			            	}
 					argtwelve[numberino] = NULL;
-
+             string lala = argtwelve[0];
              int pid = fork();
              if(pid == -1)
              {
@@ -559,15 +583,22 @@ while(1)
 
                      exit(1);
                  }
-                 if(execvp(argtwelve[0], argtwelve) == -1)
+                 char *s = getpath(argtwelve[0]);
+                 if(lala == "cd");
+                 else if(execv(s, argtwelve) == -1)
                  {
                      perror("erRROr");
                      exit(1);
 
                  }
+                 exit(0);
               }
               else if(pid > 0)
               {
+                  if(lala == "cd")
+                  {
+                      chdir(argtwelve[1]);
+                  }
                   if(-1==close(prevfd)){
                              perror("Error");
                              exit(1);
@@ -606,7 +637,7 @@ while(1)
 			            	}
 					argtwelve[numberino] = NULL;
 
-
+                        string lala = argtwelve[0];
 
                         int pid = fork();
                         if(pid == -1)
@@ -643,14 +674,21 @@ while(1)
                              exit(1);
                          }
                             }
-                            if(-1==execvp(argtwelve[0], argtwelve))
+                            char *s = getpath(argtwelve[0]);
+                            if(lala == "cd");
+                            else if(-1==execv(s, argtwelve))
                             {
                                 perror("error");
                                 exit(1);
                             }
+                            exit(0);
                         }
                         else if(pid > 0)
                         {
+                            if(lala == "cd")
+                            {
+                                chdir(argtwelve[1]);
+                            }
                             if(-1==close(prevfd)){
                              perror("Error");
                              exit(1);
@@ -722,6 +760,7 @@ while(1)
 				        	    moo = strtok(NULL, " ");
 			            	}
 					argtwelve[numberino] = NULL;
+                    string pazxxx = argtwelve[0];
                         int pid = fork();
                         if(pid == -1)
                         {
@@ -730,15 +769,22 @@ while(1)
                         }
                         else if(pid == 0)
                         {
-				            if(execvp(argtwelve[0], argtwelve) == -1)
+                            char *s = getpath(argtwelve[0]);
+                            if(pazxxx == "cd");
+				            else if(execv(s, argtwelve) == -1)
 			            	{
 					                perror("erRROr");
                                 exit(1);
 
 				            }
+                            exit(0);
                         }
                         else if(pid > 0)
                         {
+                            if(pazxxx == "cd")
+                            {
+                                chdir(argtwelve[1]);
+                            }
 
                             if(waitpid(-1, &nu, 0)==-1)
                             {
@@ -802,6 +848,7 @@ while(1)
 				        	       moo = strtok(NULL, " ");
 			            	   }
 				        		argtwelve[numberino] = NULL;
+                            string lala = argtwelve[0];
                             int pid = fork();
                            if(pid == -1)
                            {
@@ -810,7 +857,9 @@ while(1)
                            }
                            else if(pid == 0)
                            {
-				               if(execvp(argtwelve[0], argtwelve) == -1)
+                               char *s = getpath(argtwelve[0]);
+                               if(lala == "cd");
+				               else if(execv(s, argtwelve) == -1)
 			            	   {
 
 					                   perror("ERROR");
@@ -818,9 +867,17 @@ while(1)
                                    exit(1);
 
                     delete [] argm;
-				}
+
+            }
+                exit(0);
+            	}
                 else if(pid > 0)
                 {
+                    if(lala == "cd")
+                    {
+                        chdir(argtwelve[1]);
+                    }
+                    delete [] argtwelve;
                     if(waitpid(-1, &nu, 0)==-1)
                     {
                         perror("Error");
@@ -836,7 +893,7 @@ while(1)
 
 
 
-            }}
+            }
                 argm = cats;
                 delete [] argm;
 	}		}
@@ -856,6 +913,7 @@ while(1)
 				}
 				argtwelve[numberino] = NULL;
 
+                string lala = argtwelve[0];
         	int pid = fork();
 		if(pid == -1)
 		{
@@ -865,16 +923,22 @@ while(1)
 		else if(pid ==0)
 		{
             char* zebras = getpath(argtwelve[0]);
-                if(execv(zebras, argtwelve) == -1)
+                if( lala == "cd");
+                else if(execv(zebras, argtwelve) == -1)
 				{
 					perror("ERRROR");
 				}
-				exit(1);
+				exit(0);
 			}
 
 		else if(pid >0)
 		{
 
+            if(lala == "cd")
+            {
+                chdir(argtwelve[1]);
+
+            }
 			if(-1 == wait(0))
 			perror("ERROR WAITING");
 		}
@@ -888,13 +952,6 @@ while(1)
         delete [] str;
 
 }
-	//int yes = execvp(
-
-//	delete [] str;
-//	for(int i = 0; i < 2;++i)
-//	{
-//		delete argv[i];
-//	}
 
 }
 	return 0;
