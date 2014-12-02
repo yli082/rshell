@@ -108,7 +108,7 @@ while(1)
     */
     char bzxc[1024];
     getcwd(bzxc, sizeof(bzxc));
-    cout << bzxc << "$";
+    cout << bzxc << ' ' << "$" << ' ';
     if(0 == -1)
     {
         perror("Error get login");
