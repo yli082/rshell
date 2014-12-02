@@ -36,6 +36,7 @@ char* getpath(char* command)
     char *paht = strtok(path, ":");
     while(paht != NULL)
     {
+        //cout << paht << endl;
         struct stat buf;
         if(stat(paht, &buf) == -1)
         {
@@ -69,7 +70,8 @@ char* getpath(char* command)
         }
         paht = strtok(NULL, ":");
     }
-
+    //strcat(paht, "/");
+    //strcat(paht, command);
     return command;
 }
 static void sighand(int sig)
@@ -926,7 +928,8 @@ while(1)
                 if( lala == "cd");
                 else if(execv(zebras, argtwelve) == -1)
 				{
-					perror("ERRROR");
+
+					perror(zebras);
 				}
 				exit(0);
 			}
