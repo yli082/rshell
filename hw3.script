@@ -1,0 +1,57 @@
+Script started on Fri 05 Dec 2014 06:56:08 PM PST
+~
+yli082@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.                               |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32myli082[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd rshell
+[s%%%%%%%%%%[u[0;32myli082[0;36m@[0;32mcs100[0;36m:[0;32m~/rshell[0;95m (master) [0;36m$[0m make 
+if [ ! -d "./bin" ];\
+	then mkdir bin;\
+	fi
+g++ -Wall -Werror -ansi -pedantic src/hw.cpp -o bin/rshell
+g++ -Wall -Werror -ansi -pedantic src/cp.cpp -o bin/cp
+g++ -Wall -Werror -ansi -pedantic src/ls.cpp -o bin/ls
+[s%%%%%%%%%%[u[0;32myli082[0;36m@[0;32mcs100[0;36m:[0;32m~/rshell[0;95m (master) [0;36m$[0m bin/rshell
+/home/csmajs/yli082/rshell $ ls
+a.out	asd.cpp  hw3.script  Makefile  README.md  tests
+asdasd	bin	 LICENSE     poop      src
+/home/csmajs/yli082/rshell $ /bin/ls
+a.out	asd.cpp  hw3.script  Makefile  README.md  tests
+asdasd	bin	 LICENSE     poop      src
+/home/csmajs/yli082/rshell $ ./bin/ls
+[1;32ma.out[0m* [1;34masdasd[0m/ asd.cpp [1;34mbin[0m/ hw3.script LICENSE Makefile [1;34mpoop[0m/ README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+/home/csmajs/yli082/rshell $ bin/ls
+[1;32ma.out[0m* [1;34masdasd[0m/ asd.cpp [1;34mbin[0m/ hw3.script LICENSE Makefile [1;34mpoop[0m/ README.md [1;34msrc[0m/ [1;34mtests[0m/ 
+/home/csmajs/yli082/rshell $ ./ls
+./ls: No such file or directory
+/home/csmajs/yli082/rshell $ cd src
+/home/csmajs/yli082/rshell/src $ cd .
+/home/csmajs/yli082/rshell/src $ cd ..
+/home/csmajs/yli082/rshell $ cd ..
+/home/csmajs/yli082 $ cd sr  rshell/src
+/home/csmajs/yli082/rshell/src $ ls
+cp.cpp	hw.cpp	ls.cpp	Timer.h
+/home/csmajs/yli082/rshell/src $ touch       touch     mkdir ./tests
+/home/csmajs/yli082/rshell/src $ cd ./tests
+/home/csmajs/yli082/rshell/src/tests $ cd ..
+/home/csmajs/yli082/rshell/src $ cd ..
+/home/csmajs/yli082/rshell $ cat
+asd
+asd
+asd
+asd
+^C/home/csmajs/yli082/rshell $ ^C^C^C^C^C^C^C^C^C^C
+/home/csmajs/yli082/rshell $ bin/rse       #done testing             #done testing
+/home/csmajs/yli082/rshell $ exit
+[s%%%%%%%%%%[u[0;32myli082[0;36m@[0;32mcs100[0;36m:[0;32m~/rshell[0;95m (master) [0;36m$[0m exit
+exit
+~
+yli082@hammer $ exit
+exit
+
+Script done on Fri 05 Dec 2014 06:59:02 PM PST

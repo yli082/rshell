@@ -79,4 +79,11 @@ Sometimes displays two error messages
 Does not support &
 
 >>> only supports cat
+
+hw3:
+
+memory leaks when the command doesn't exist
+
+possible memory leaks when cd used in pipes/connectors
+
 ```

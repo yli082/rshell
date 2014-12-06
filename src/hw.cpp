@@ -40,6 +40,8 @@ char* getpath(char* command)
         struct stat buf;
         if(stat(paht, &buf) == -1)
         {
+            if(1==0)
+                perror("asdasd");
         }
         else
         {
@@ -81,7 +83,6 @@ static void sighand(int sig)
     int child = getpid();
     if(-1 == child)
     {
-        perror("child");
         exit(0);
     }
     if(child == 0)
@@ -93,7 +94,12 @@ static void sighand(int sig)
 }
 int main()
 {
-    signal(SIGINT, sighand);
+   if(SIG_ERR== signal(SIGINT, sighand))
+   {
+       perror("err");
+
+   }
+
 
 
 while(1)
@@ -586,6 +592,7 @@ while(1)
                      exit(1);
                  }
                  char *s = getpath(argtwelve[0]);
+                 argtwelve[0] = s;
                  if(lala == "cd");
                  else if(execv(s, argtwelve) == -1)
                  {
@@ -599,7 +606,10 @@ while(1)
               {
                   if(lala == "cd")
                   {
-                      chdir(argtwelve[1]);
+                      if(-1==chdir(argtwelve[1]))
+                      {
+                          perror("err");
+                      }
                   }
                   if(-1==close(prevfd)){
                              perror("Error");
@@ -677,6 +687,7 @@ while(1)
                          }
                             }
                             char *s = getpath(argtwelve[0]);
+                            argtwelve[0] = s;
                             if(lala == "cd");
                             else if(-1==execv(s, argtwelve))
                             {
@@ -689,7 +700,11 @@ while(1)
                         {
                             if(lala == "cd")
                             {
-                                chdir(argtwelve[1]);
+                                if(-1==chdir(argtwelve[1]))
+                                {
+                                    perror("err ");
+                                }
+
                             }
                             if(-1==close(prevfd)){
                              perror("Error");
@@ -772,6 +787,7 @@ while(1)
                         else if(pid == 0)
                         {
                             char *s = getpath(argtwelve[0]);
+                            argtwelve[0] = s;
                             if(pazxxx == "cd");
 				            else if(execv(s, argtwelve) == -1)
 			            	{
@@ -785,7 +801,10 @@ while(1)
                         {
                             if(pazxxx == "cd")
                             {
-                                chdir(argtwelve[1]);
+                                if(-1==chdir(argtwelve[1]))
+                                {
+                                    perror("err");
+                                }
                             }
 
                             if(waitpid(-1, &nu, 0)==-1)
@@ -860,6 +879,7 @@ while(1)
                            else if(pid == 0)
                            {
                                char *s = getpath(argtwelve[0]);
+                               argtwelve[0] = s;
                                if(lala == "cd");
 				               else if(execv(s, argtwelve) == -1)
 			            	   {
@@ -877,7 +897,8 @@ while(1)
                 {
                     if(lala == "cd")
                     {
-                        chdir(argtwelve[1]);
+                        if(-1==chdir(argtwelve[1]))
+                            perror(argtwelve[1]);
                     }
                     delete [] argtwelve;
                     if(waitpid(-1, &nu, 0)==-1)
@@ -916,6 +937,15 @@ while(1)
 				argtwelve[numberino] = NULL;
 
                 string lala = argtwelve[0];
+                if(lala == "cd")
+                {
+
+                if(-1==chdir(argtwelve[1]))
+                    perror(argtwelve[1]);
+
+                }
+                else
+                {
         	int pid = fork();
 		if(pid == -1)
 		{
@@ -925,26 +955,23 @@ while(1)
 		else if(pid ==0)
 		{
             char* zebras = getpath(argtwelve[0]);
-                if( lala == "cd");
-                else if(execv(zebras, argtwelve) == -1)
+            argtwelve[0] = zebras;
+                if(execv(zebras, argtwelve) == -1)
 				{
 
 					perror(zebras);
 				}
-				exit(0);
+                return 0;
+				//exit(0);
 			}
 
 		else if(pid >0)
 		{
 
-            if(lala == "cd")
-            {
-                chdir(argtwelve[1]);
-
-            }
 			if(-1 == wait(0))
 			perror("ERROR WAITING");
 		}
+                }
         argtwelve = cats;
         delete [] argtwelve;
 }
