@@ -173,21 +173,6 @@ void output(vector<string> v, const char* dir)
      }
      sort(v.begin(), v.end(), locale("en_US.UTF-8"));
      output(v, dirName.c_str());
-  /*
-     for(unsigned int x = 0; x < v.size();++x)
-     {
-         if(flag == 1)
-         {
-             cout << v.at(x) << endl;
-         }
-         else {
-
-            if(v.at(x).at(0) == '.');
-            else
-            cout << v.at(x) << endl;
-         }
-     }
-*/
  if(-1==closedir(dirp)){
      perror("Error closing");
      exit(1);
