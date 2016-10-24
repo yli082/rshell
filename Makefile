@@ -1,5 +1,3 @@
-
-
 all:
 	if [ ! -d "./bin" ];\
 	then mkdir bin;\
@@ -22,4 +20,3 @@ ls:
 	then mkdir bin;\
 	fi
 	g++ -Wall -Werror -ansi -pedantic src/ls.cpp -g -o bin/ls
-
