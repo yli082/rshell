@@ -17,8 +17,7 @@
 using namespace std;
 
 void foroopsies(char *c[10000])
-{
-}
+{}
 
 int countfun(string s)
 {
