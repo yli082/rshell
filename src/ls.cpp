@@ -14,7 +14,6 @@
 #include <vector>
 using namespace std;
 
-
 int blocksize(vector<string> v, const char* dir)
 {
     int total = 0;
