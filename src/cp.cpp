@@ -80,18 +80,18 @@ int main(int argc, char* argv[]){
 		}
 	}
 	if(ifstream(argv[file2])){
-        if(-1 == stat(argv[2], &buf)){
-            perror("stat");
-            exit(0);
-        }
-        if(S_ISDIR(buf.st_mode)){
-            cerr << "Output parameter is dir" << endl;
-            exit(0);
-        }
-        else{
-    		cerr << "Output file already exists" << endl;
-	    	exit(0);
-        }
+		if(-1 == stat(argv[2], &buf)){
+		    perror("stat");
+		    exit(0);
+		}
+		if(S_ISDIR(buf.st_mode)){
+		    cerr << "Output parameter is dir" << endl;
+		    exit(0);
+		}
+		else{
+			cerr << "Output file already exists" << endl;
+			exit(0);
+		}
 	}
 	else{
 		ofstream tmp(argv[file2]);
